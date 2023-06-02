@@ -1,0 +1,38 @@
+@use 'predefined' as pre;
+
+.navigation-link {
+    @extend %link-font;
+    color: white;
+}
+
+.outline-link{
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+nav .active {
+    color: pre.$sel;
+    border-color: pre.$sel;
+    border-bottom: 2px solid;
+
+}
+
+nav,
+footer {
+    height: 60px;
+    background-color: pre.$baltic;
+
+    a {
+        &:hover {
+            color: pre.$sel;
+            border-color: pre.$sel;
+            transition: all 300ms;
+        }
+    }
+}
+
+.classic-link{
+    color: #1C64F2;
+    text-decoration: underline;
+}

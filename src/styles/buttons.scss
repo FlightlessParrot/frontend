@@ -1,0 +1,23 @@
+@use 'predefined.scss' as pre;
+
+
+.action-button{
+    @extend %button-font;
+    display: inline-block;
+    text-align: center;
+    padding: 8px 18px;
+    margin: 32px;
+    border-radius: 10px;
+    background-color: pre.$mediterrianian;
+    
+    &:hover{
+        background-color: pre.$sea;
+        color:pre.$c_gray;
+        transition: all 300ms;
+    }
+}
+
+
+button{
+    @extend %button-font;
+    }

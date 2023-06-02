@@ -1,0 +1,68 @@
+
+//colors
+$odra: #002029;
+$baltic: #00303D;
+$sea: #004052;
+$sel: #005066;
+$mediterrianian: #00607A;
+$c_gray: #9C9C9C;
+
+//fonts
+@font-face {
+    font-family: Nunito;
+    src: url('../../public/Storage/Fonts/Nunito/Nunito-VariableFont_wght.ttf');
+  }
+  @font-face {
+    font-family: Lora;
+    src: url('../../public/Storage/Fonts/Lora/Lora-VariableFont_wght.ttf');
+  }
+
+  %regular-sans-serif
+  {
+    font-size: 16px;
+    font-family: 'Nunito';
+  }
+
+  %regular-serif{
+    font-size: 16px;
+    font-family: 'Lora';
+  }
+
+  %bold-sans-serif
+  {
+    @extend %regular-sans-serif;
+    font-weight: bold;
+  }
+
+  %bold-serif{
+    @extend %regular-serif;
+    font-weight: bold;
+  }
+
+  %button-font{
+    font-family: 'Nunito';
+    font-size: 20px;
+    font-weight: bold;
+
+  }
+
+  %link-font{
+    font-family: 'Nunito';
+    font-size: 20px;
+  }
+
+  %paragraph{
+    font-family: 'Nunito';
+    font-size: 20px;
+
+  }
+  %lead{
+font-family: 'Lora';
+font-size: 27px;
+  }
+
+  %article-title-font{
+    font-family: 'Lora';
+    font-size: 48px;
+    font-weight: bold;
+  }

@@ -1,0 +1,46 @@
+@use 'predefined.scss' as pre;
+@forward './linksFooterNavigation.scss';
+@forward 'buttons';
+@forward 'forms';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body,
+html {
+    padding: 0px;
+    margin: 0px;
+    @extend %regular-sans-serif;
+    background-color: pre.$odra !important;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+
+
+
+
+.bold-sans-serif {
+    @extend %bold-sans-serif;
+}
+
+.bold-serif {
+    @extend %bold-serif;
+}
+
+h1,
+.article-title-font {
+    @extend %article-title-font;
+
+}
+
+.par {
+    @extend %paragraph;
+}
+
+
+
+.lead {
+    @extend %lead;
+}

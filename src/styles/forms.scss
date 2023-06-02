@@ -1,0 +1,16 @@
+@use 'predefined' as pre;
+
+select {
+
+    option {
+
+        color: pre.$baltic;
+    }
+}
+
+select,
+input,
+textarea,
+label {
+    @extend %regular-sans-serif;
+}
