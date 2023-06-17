@@ -16,6 +16,7 @@ export default function ContactData() {
         maxW="300px"
         size="md"
         placeholder="Inny"
+        name='sirOrLady'
         value={fields.sirOrLady}
         onChange={(e) => setFields((s) => ({ ...s, sirOrLady: e.target.value }))}
       >

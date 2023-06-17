@@ -3,6 +3,7 @@ import { Register } from "../../../Pages/Quest/Register";
 import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
 
+window.scroll=jest.fn()
 jest.mock("../../../Components/Layouts/QuestLoginLayout", () => {
   const module = jest.requireActual(
     "../../../Components/Layouts/QuestLoginLayout"
@@ -10,6 +11,7 @@ jest.mock("../../../Components/Layouts/QuestLoginLayout", () => {
   return {
     __esModule: true,
     ...module,
+   
     QuestLoginLayout: (props) => <div>{props.children}</div>,
   };
 });
@@ -17,7 +19,8 @@ jest.mock("../../../Components/Layouts/QuestLoginLayout", () => {
 jest.mock("react-router-dom", () => {
   return {
     __esModule: true,
-    ...module,
+    ...module, 
+    useActionData: ()=>false,
     Form: (props) => <form onSubmit={(e)=>e.preventDefault() }>{props.children}</form>,
   };
 });

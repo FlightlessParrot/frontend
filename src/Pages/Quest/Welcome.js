@@ -12,7 +12,7 @@ export default function Welcome()
         <QuestLayout>
        
         <Infographics infographicsData={infographicsData}/>
-        <Article text={welcomeArticle} givenClasses='w-4/5' />
+        <Article text={welcomeArticle} givenClasses='lg:w-4/5' />
         <RoboMan />
         </QuestLayout>
     );

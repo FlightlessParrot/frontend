@@ -2,15 +2,23 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import Login from "../../../Pages/Quest/Login"
 import UserEvent from "@testing-library/user-event"
 import { act } from "react-dom/test-utils"
+import { useActionData } from "react-router-dom"
 jest.mock("react-router-dom", ()=>{
     const original=jest.requireActual("react-router-dom")
     return { 
     __esModule: true,
     ...original,
-    Form: (props)=>{return <form>{props.children}</form>},
-    Link: (props)=>{return <a>{props.children}</a>},
-    NavLink: (props)=>{return <a>{props.children}</a>}
+    Form: (props)=>{return <form onSubmit={(e)=>e.preventDefault()}>{props.children}</form>},
+    Link: (props)=>{return <a href=''>{props.children}</a>},
+    NavLink: (props)=>{return <a href=''>{props.children}</a>},
+    useLoaderData: ()=>false,
+    useActionData: ()=>false
 }})
+jest.mock('../../../Components/Layouts/QuestLoginLayout',()=>{
+    return{
+        QuestLoginLayout: (props)=><div>{props.children}</div>
+    }
+})
 
 describe('Testuj Logowanie użytkownika',()=>
 {

@@ -5,7 +5,7 @@ import { act } from "react-dom/test-utils"
 
 describe('test User and Password form',()=>{
     it('check if form  is present',()=>{
-        render(<UserAndPassword />)
+        render(<UserAndPassword setError={jest.fn} />)
         
         const loginForm=screen.getByLabelText('e-mail')
         const passwordForm=screen.getByLabelText('Hasło')
@@ -16,7 +16,7 @@ describe('test User and Password form',()=>{
         expect(passwordConfirmationForm).toBeInTheDocument();
     })
     it('check if validation appear',()=>{
-    render(<UserAndPassword />)
+    render(<UserAndPassword setError={jest.fn} />)
     const loginForm=screen.getByLabelText('e-mail')
     const passwordForm=screen.getByLabelText('Hasło')
     const passwordConfirmationForm=screen.getByLabelText('Powtórz hasło') 
@@ -36,7 +36,7 @@ describe('test User and Password form',()=>{
     expect(confirmationError).toBeInTheDocument();
 })
 it('check if validation dissappear',()=>{
-    render(<UserAndPassword />)
+    render(<UserAndPassword setError={jest.fn} />)
     const loginForm=screen.getByLabelText('e-mail')
     const passwordForm=screen.getByLabelText('Hasło')
     const passwordConfirmationForm=screen.getByLabelText('Powtórz hasło') 

@@ -9,6 +9,7 @@ jest.mock("react-router-dom", ()=>{
     __esModule: true,
     ...original,
     Form: (props)=>{return <form>{props.children}</form>},
+    useActionData: ()=>true
 
    
 }})

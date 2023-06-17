@@ -4,6 +4,7 @@ import  router from './router';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { RouterProvider } from 'react-router-dom';
 import './styles/style.scss';
+import 'animate.css';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { menuTheme } from './ChakraStyles/Components/Menu';
 import { Input } from './ChakraStyles/Components/Input';

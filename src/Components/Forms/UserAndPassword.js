@@ -13,16 +13,16 @@ export const UserAndPassword = (props) => {
     
     const errorPassword= wasPasswordTouched && notMatch(password, [/[A-Z]+/,/[0-9]+/,/.{8}/, /[a-z]+/ ]) 
     const errorConfirm=wasPasswordTouched && password!==confirmPassword
-    // useEffect(
-    //     ()=>{
-    //         if(wasMailTouched && wasPasswordTouched && !errorPassword && !errorConfirm)
-    //         {
-    //             props.setError(false)
-    //         }else{
-    //             props.setError(true)
-    //         }
-    //     }
-    // )
+    useEffect(
+        ()=>{
+            if(wasMailTouched && wasPasswordTouched && !errorPassword && !errorConfirm)
+            {
+                props.setError(false)
+            }else{
+                props.setError(true)
+            }
+        },[wasMailTouched, wasPasswordTouched, errorPassword, errorConfirm]
+    )
     function notMatch(string, arrayOfExpression)
     {
         let check=false
@@ -43,7 +43,7 @@ export const UserAndPassword = (props) => {
         <div className='flex flex-col gap-10 m-10'><div>
             <FormControl  isInvalid={errorMail}>
                 <FormLabel>e-mail</FormLabel>
-            <Input name='mail' value={mail} onChange={(e)=>setMail(e.target.value)} onBlur={(e)=>touchMail(true)} required project='project' type='email' />
+            <Input name='email' value={mail} onChange={(e)=>setMail(e.target.value)} onBlur={(e)=>touchMail(true)} required project='project' type='email' />
             <FormErrorMessage>Podaj e-mail.</FormErrorMessage>
             </FormControl></div>
             <div className='grid lg:auto-cols-fr gap-4'>

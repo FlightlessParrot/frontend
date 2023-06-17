@@ -1,4 +1,4 @@
-import QuestTopBar, { QuestMobileBar } from "./QuestTopBar";
+import TopBar, { QuestMobileBar } from "./TopBar";
 import { questLinks as links, questFootLinks} from "../../Data/navLinks";
 import { Link } from "react-router-dom";
 export default function QuestLayout(props)
@@ -9,10 +9,10 @@ export default function QuestLayout(props)
   return (
     <>
     
-      <QuestTopBar links={links} />
+      <TopBar links={links} reportBugUrl="/report-error"  />
       <QuestMobileBar />
       <div className="p-6 relative top-0">{props.children}</div>
-      <footer className="hidden  w-screen md:flex justify-around items-center">{footLink}</footer>
+      <footer role='menu' className="hidden  w-screen md:flex justify-around items-center">{footLink}</footer>
     </>
   );
 }

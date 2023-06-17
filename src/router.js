@@ -1,11 +1,32 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, } from "react-router-dom";
 import Welcome from "./Pages/Quest/Welcome";
-
+import loginloader from "./fetch/loader/login";
 import ReportBug from "./Pages/Quest/ReportBug";
 import Help from "./Pages/Quest/Help";
 import Login from "./Pages/Quest/Login";
 import { Register } from "./Pages/Quest/Register";
+import sendMessageAction from "./fetch/action/sendMessage";
+import registerAction from "./fetch/action/register";
+import loginAction from "./fetch/action/login";
+import VerifyEmail from "./Pages/User/VerifyEmail";
+
+import RemindPassword from "./Pages/Quest/RemindPassword";
+import resetPasswordAction, {
+  sendNewPasswordAction,
+} from "./fetch/action/resetPassword";
+import ResetPassword from "./Pages/Quest/ResetPassword";
+import verifyEmailLoader from "./fetch/loader/verifyEmailLoader";
+import User from "./Pages/User/User";
+import checkIfAuth from "./fetch/loader/checkIfAuth";
+import CreateTestInstance from "./Pages/User/Tests/CreateTestInstance";
+import Tests from "./Pages/User/Tests/Tests";
+import createTestLoader from "./fetch/loader/createTestLoader";
 const router = createBrowserRouter([
+  {
+    path: '/test',
+    element: <CreateTestInstance/>,
+    loader: createTestLoader
+  },
   {
     path: "/",
     element: <Welcome key={1} />,
@@ -13,31 +34,62 @@ const router = createBrowserRouter([
   {
     path: "/report-error",
     element: <ReportBug />,
-    action: async ({ params, request }) => {
-      console.log(params);
-      console.log(request);
-      const data = await request.text();
-      console.log(data);
-      return null;
-    },
+    action: sendMessageAction,
   },
   {
     path: "/help",
     element: <Help />,
-    action: async ({ params, request }) => {
-      console.log(params);
-      console.log(request);
-      const data = await request.text();
-      console.log(data);
-      return null;
-    },
+    action: sendMessageAction,
   },
   {
     path: "/register",
     element: <Register />,
+    action: registerAction,
   },
 
-  { path: "/login", element: <Login /> },
+  {
+    path: "/login",
+    element: <Login />,
+    action: loginAction,
+    loader: loginloader,
+  },
+  {
+    path: "/forgot-password",
+    element: <RemindPassword />,
+    action: resetPasswordAction,
+  },
+  {
+    path: "/password-reset/:passwordReset",
+    element: <ResetPassword />,
+    action: sendNewPasswordAction,
+  },
+
+  {
+    path: "/user",
+    element: <User />,
+    loader: checkIfAuth,
+    children: [
+      {
+        path: 'tests',
+        element: <Tests />,
+        children:[
+          {
+            path:'create',
+            element: <CreateTestInstance />,
+            loader: createTestLoader
+          }
+        ]
+      },
+      {
+        path: "verify-email/:id/:hash",
+        element: <VerifyEmail />,
+        loader: verifyEmailLoader,
+      },
+    ],
+  },
 ]);
+
+
+
 
 export { router as default };
