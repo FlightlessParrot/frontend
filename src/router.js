@@ -25,7 +25,10 @@ const router = createBrowserRouter([
   {
     path: '/test',
     element: <CreateTestInstance/>,
-    loader: createTestLoader
+    loader: createTestLoader,
+    action: async ({params, request})=>{
+      console.log((await request.text()))
+    return null}
   },
   {
     path: "/",
