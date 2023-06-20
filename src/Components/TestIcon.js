@@ -19,8 +19,8 @@ export default function TestIcon({name, id, onClick, path}) {
 
 export function TestIconWithButton({TestIconDataObject, onClick,buttonText,  color})
 {
-    <div className="p-2 flex flex-row justify-center">
+ return   <div className="p-2 flex flex-col border justify-center sel rounded-md">
         <TestIcon {...TestIconDataObject} />
-        <button className="action-button mt-4" style={{backgroundColor: color}} onClick={onClick}>{buttonText}</button>
+        <button className="action-button mt-4 mb-4" style={{backgroundColor: color}} onClick={onClick}>{buttonText}</button>
     </div>
 }

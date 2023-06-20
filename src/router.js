@@ -30,7 +30,7 @@ import Delete from "./Pages/User/Tests/Settings/Delete";
 const router = createBrowserRouter([
   {
     path: '/test',
-    element: <TestsSettings />,
+    element: <Delete />,
  
   },
   {
