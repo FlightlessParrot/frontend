@@ -34,7 +34,7 @@ export default function TopBar(props) {
   });
 
   return (
-    <nav className="hidden  w-full lg:flex lg:justify-end items-center lg:pr-8 lg:gap-8 relative top-0 h-[60px]">
+    <nav className="hidden  w-full lg:flex lg:justify-end items-center lg:pr-8 lg:gap-8 relative top-0 p-8">
       <img
         src="/Storage/Images/Education-150-150.png"
         alt="logo"

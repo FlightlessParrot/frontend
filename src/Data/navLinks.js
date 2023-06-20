@@ -72,13 +72,13 @@ export const userMainLinks={
 
   {
     id:0,
-    url:'/user/test/',
+    url:'/user/tests',
     icon: <ChevronRightIcon />,
     name: 'Testy'
   },
   {
     id:2,
-    url:'/user/test/create-test',
+    url:'/user/test/create',
     icon: <ChevronRightIcon />,
     name: 'Konto'
 
@@ -112,12 +112,12 @@ export const userMainLinks={
 export const testLinks=[
   {
     id:1,
-    url:'/user/test/create-test',
+    url:'/user/tests/create',
     icon: <ArrowRightIcon/>,
     name: 'Generuj test'
   },{
     id:2,
-    url:'/user/test/create-test',
+    url:'/user/tests/settings',
     icon: <ArrowRightIcon/>,
     name: 'Zarządzaj testami'
   },

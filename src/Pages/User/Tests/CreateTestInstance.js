@@ -73,8 +73,8 @@ export default function CreateTestInstance() {
     return tests;
   };
   return (
-    <TestUserLayout>
-      <Form method="post">
+
+      <Form method="post p-4">
         <Title title="Rozpocznij test" newClass="mt-8" />
         <div className="p-10 ">
           <h3 className="bold-serif m-16">Ustawienia ogólne</h3>
@@ -94,7 +94,7 @@ export default function CreateTestInstance() {
           <h3 className="inline-block bold-serif m-16">
             Ustawienia szczególne
           </h3>
-          <Flex alignItems="start" justifyContent="space-between">
+          <Flex flexDir={{base: 'column', md:'row'}} gap={14} alignItems="start" justifyContent={{md:"space-between"}}>
             <FormControl as={Box} maxW="fit-content">
               <FormLabel>Ilość pytań</FormLabel>
               <Select name="questionsNumber" placeholder="10" maxW={"150px"}>
@@ -149,6 +149,6 @@ export default function CreateTestInstance() {
         </div>
         <button className="action-button">Zaczynam Test</button>
       </Form>
-    </TestUserLayout>
+
   );
 }

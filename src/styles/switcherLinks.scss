@@ -1,0 +1,18 @@
+@use './predefined.scss' as pre;
+.active-page-switcher-link, .disactive-page-switcher-link{
+      @extend %link-font;
+    padding: 20px;
+    text-align: center;
+    display: inline-block;
+    text-align: center;
+    @media screen and (max-width: 767px)
+    {
+        padding: 8px;
+        font-size: 20px;
+
+    }
+}
+.disactive-page-switcher-link{
+  background-color: pre.$baltic;
+  
+}

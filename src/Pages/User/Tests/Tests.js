@@ -9,9 +9,9 @@ export default function Tests(props) {
     <TestUserLayout>
         {showTitle && <><Title title='Testy' newClass='mt-16' />
         <h2 className="lead p-4">Generuj testy i zarządzaj nimi.</h2></>}
-        <div className="p-4">
+      
             <Outlet />
-        </div>
+        
         </TestUserLayout>
   )
 }

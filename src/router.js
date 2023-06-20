@@ -21,11 +21,17 @@ import checkIfAuth from "./fetch/loader/checkIfAuth";
 import CreateTestInstance from "./Pages/User/Tests/CreateTestInstance";
 import Tests from "./Pages/User/Tests/Tests";
 import createTestLoader from "./fetch/loader/createTestLoader";
+
+import TestsSettings from "./Pages/User/Tests/TestsSettings";
+import New from "./Pages/User/Tests/Settings/New";
+import Delete from "./Pages/User/Tests/Settings/Delete";
+
+
 const router = createBrowserRouter([
   {
     path: '/test',
-    element: <CreateTestInstance/>,
-    loader: createTestLoader
+    element: <TestsSettings />,
+ 
   },
   {
     path: "/",
@@ -77,6 +83,20 @@ const router = createBrowserRouter([
             path:'create',
             element: <CreateTestInstance />,
             loader: createTestLoader
+          },
+          {
+            path: 'settings',
+            element: <TestsSettings />,
+            children:[
+              {
+                path: 'new',
+                element: <New />
+              },
+              {
+                path: 'delete',
+                element: <Delete />
+              }
+            ]
           }
         ]
       },
