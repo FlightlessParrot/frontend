@@ -16,6 +16,7 @@ import { useReducer } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 
 export default function CreateTestInstance() {
+  
   const loaderData = useLoaderData();
   const initValue = {
     questionsCorrect: true,
@@ -37,14 +38,14 @@ export default function CreateTestInstance() {
       };
     }
     newState[node.name] = node.checked;
-
+    if(!(node.checked)){  newState.questionsAll=false; }
     return { ...newState };
   };
   const makeQuestionNumbers = () => {
     const y = [];
     for (let x = 20; x <= 150; x += 10) {
       y.push(
-        <option value={x} key={x}>
+        <option data-testid='CreateTestInstance_optionNumber' value={x} key={x}>
           {x}
         </option>
       );
@@ -55,6 +56,7 @@ export default function CreateTestInstance() {
     questionsReducer,
     initValue
   );
+ 
   const [customTests, setCustomTests] = useBoolean();
 
   const makeTestOptions = () => {
@@ -107,6 +109,7 @@ export default function CreateTestInstance() {
                   name="questionsAll"
                   onChange={dispatchQuestions}
                   isChecked={questions.questionsAll}
+                  
                 />
                 <FormLabel>Wszystkie pytania</FormLabel>
               </FormControl>
@@ -115,24 +118,27 @@ export default function CreateTestInstance() {
                   name={"questionsCorrect"}
                   onChange={dispatchQuestions}
                   isChecked={questions.questionsCorrect}
+               
                 />
-                <FormLabel>pytania poprawne rozwiązane</FormLabel>
+                <FormLabel>Pytania poprawnie rozwiązane</FormLabel>
               </FormControl>
               <FormControl display={"flex"} gap="6">
                 <Switch
                   name={"questionsFalse"}
                   onChange={dispatchQuestions}
                   isChecked={questions.questionsFalse}
+             
                 />
-                <FormLabel>pytania błędne rozwiązane</FormLabel>
+                <FormLabel>Pytania błędnie rozwiązane</FormLabel>
               </FormControl>
               <FormControl display={"flex"} gap="6">
                 <Switch
                   name="questionsNone"
                   onChange={dispatchQuestions}
                   isChecked={questions.questionsNone}
+                 
                 />
-                <FormLabel>pytania nierozwiązane</FormLabel>
+                <FormLabel>Pytania nierozwiązane</FormLabel>
               </FormControl>
             </Stack>
             <FormControl
