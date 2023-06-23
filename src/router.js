@@ -25,12 +25,13 @@ import createTestLoader from "./fetch/loader/createTestLoader";
 import TestsSettings from "./Pages/User/Tests/TestsSettings";
 import New from "./Pages/User/Tests/Settings/New";
 import Delete from "./Pages/User/Tests/Settings/Delete";
+import QuestionsSettings from "./Pages/User/Tests/QuestionsSettings";
 
 
 const router = createBrowserRouter([
   {
     path: '/test',
-    element: <Delete />,
+    element: <QuestionsSettings />,
  
   },
   {
