@@ -52,3 +52,46 @@ export const alertResetPasswordData={
         description:'Coś poszło nie tak. Wygeneruj ponownie link do zmiany hasła.'
     },
 }
+export const alertDeleteTest={
+    positive:{
+        status: 'success',
+        title:'Sukces',
+        description:'Pomyślnie usunięto test.'
+    },
+    negative:{
+        status: 'error',
+        title:'Wystąpił błąd',
+        description:'Coś poszło nie tak. Nie udało się usunąć testu.'
+    },
+}
+
+export const alertNewTest={
+    positive:{
+        status: 'success',
+        title:'Sukces',
+        description:'Pomyślnie utworzono test.'
+    },
+    negative:{
+        status: 'error',
+        title:'Wystąpił błąd',
+        description:'Coś poszło nie tak. Nie udało się utworzyć testu.'
+    },
+}
+export const alertDefault={
+    positive:{
+        status: 'success',
+        title:'Sukces',
+        description:'Operacja wykonana pomyślnie.'
+    },
+    negative:{
+        status: 'error',
+        title:'Wystąpił błąd',
+        description:'Coś poszło nie tak. Spróbuj ponownie później.'
+    },
+}
+
+export const alertSolveTest={
+    status: 'error',
+        title:'Wystąpił błąd',
+        description:'Coś poszło nie tak. Nie udało się wysłać testu.'
+}

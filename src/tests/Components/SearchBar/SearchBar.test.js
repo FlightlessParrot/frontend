@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from "@testing-library/react"
-import SearchBar from "../../Components/SearchBar"
+import SearchBar from "../../../Components/SearchBars/SearchBar"
 import userEvent from "@testing-library/user-event"
 const onChangeMockery= jest.fn((e)=>e.target.value)
 const onSubmitMockery=jest.fn()

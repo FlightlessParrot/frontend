@@ -4,7 +4,7 @@ import { Alert, AlertDescription, AlertIcon, CloseButton, AlertTitle, Box } from
 export default function MyAlert(props) {
 
   return (props.isOpen ?
-   <Alert className="animate__animated animate__bounce" status={props.status} color='black' position={{md:'absolute'}} top='60px' right='60px' width={{md:'500px'}} zIndex={'100'} margin={'20px'}>
+   <Alert className="animate__animated animate__bounce" status={props.status} color='black' position={{md:'absolute'}} top='60px' right='60px'  width={{md:'fit-content'}} maxWidth={{md:'500px'}} zIndex={'100'} margin={'20px'}>
     <AlertIcon />
     <Box>
         <AlertTitle>{props.title}</AlertTitle>

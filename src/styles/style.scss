@@ -13,7 +13,7 @@ html {
     margin: 0px;
     @extend %regular-sans-serif;
     background-color: pre.$odra !important;
-    color: white;
+    color: rgb(241, 241, 241);
     overflow-x: hidden;
 }
 
@@ -33,6 +33,10 @@ html {
 h1,
 .article-title-font {
     @extend %article-title-font;
+    @media screen and (max-width: 640px)
+    {
+        font-size: 26px;
+    }
 
 }
 

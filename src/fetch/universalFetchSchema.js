@@ -2,21 +2,21 @@ import { redirect } from "react-router-dom";
 import getCSRFToken from "../cookies/getCSRFToken";
 
 export default async function universalFetchSchema(
-  request,
+  request=null,
   fetchUrl,
   method = "post",
-  redirectLocation= '/login'
+  redirectLocation= '/login',
+  needData =false
 ) {
   const token = await getCSRFToken();
-  const body = await request.formData();
+  const body = request && await request.formData();
   const url = process.env.REACT_APP_BACKEND + fetchUrl;
   const option = {
     method: method,
     credentials: "include",
-
-    body: body,
-    headers: { "X-XSRF-TOKEN": token, Accept: "application/json" },
+    headers: { "X-XSRF-TOKEN": token, 'Accept': "application/json" },
   };
+  if(request){option['body']=body;}  
   try {
     const response = await fetch(url, option);
     console.log(response.status);
@@ -29,7 +29,9 @@ export default async function universalFetchSchema(
       
       return redirect(redirectLocation)
     }
-    return response.status < 300 ? true : false;
+    const wasSuccesful=response.status < 300 ? true : false;
+    const data= needData && response.status===200  ? response.json() : []
+    return   needData ? data :wasSuccesful;
   } catch (e) {
     console.log(e);
     return false;

@@ -10,6 +10,10 @@ import { menuTheme } from './ChakraStyles/Components/Menu';
 import { Input } from './ChakraStyles/Components/Input';
 //import reportWebVitals from './reportWebVitals';
 const theme = extendTheme({
+  
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
+
   colors: {
     odra: "#002029",
     baltic: "#00303D",

@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Check Answer Component test happy component render correctly 1`] = `
+<div
+  className="flex flex-col bg-sel p-4 max-w-sm rounded"
+>
+  <svg
+    className="chakra-icon css-h24txs"
+    focusable={false}
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+      fill="currentColor"
+    />
+  </svg>
+  <h2
+    className="text-md font-extralight text-zinc-300 text-center m-2"
+  >
+    Pytanie:
+  </h2>
+  <hr
+    aria-orientation="horizontal"
+    className="chakra-divider css-1upb9tn"
+  />
+  <p>
+    Who is the parrot?
+  </p>
+  <h2
+    className="text-md font-extralight text-zinc-300 text-center m-2"
+  >
+    Udzielona odpowiedź
+  </h2>
+  <hr
+    aria-orientation="horizontal"
+    className="chakra-divider css-1upb9tn"
+  />
+  <p>
+    I hope I am not
+  </p>
+</div>
+`;
+
+exports[`test Check Answer Component test null component render correctly 1`] = `
+<div
+  className="flex flex-col bg-sel p-4 max-w-sm rounded"
+>
+  <h2
+    className="text-md font-extralight text-zinc-300 text-center m-2"
+  >
+    Pytanie:
+  </h2>
+  <hr
+    aria-orientation="horizontal"
+    className="chakra-divider css-1upb9tn"
+  />
+  <p>
+    Who is the parrot?
+  </p>
+  <h2
+    className="text-md font-extralight text-zinc-300 text-center m-2"
+  >
+    Udzielona odpowiedź
+  </h2>
+  <hr
+    aria-orientation="horizontal"
+    className="chakra-divider css-1upb9tn"
+  />
+  <p>
+    I hope I am not
+  </p>
+</div>
+`;
+
+exports[`test Check Answer Component test sad component render correctly 1`] = `
+<div
+  className="flex flex-col bg-sel p-4 max-w-sm rounded"
+>
+  <div
+    className="rounded-full p-4 bg-red-600 w-[60px] h-[60px] flex justify-center items-center"
+  >
+    <svg
+      className="chakra-icon css-dhtqli"
+      focusable={false}
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <h2
+    className="text-md font-extralight text-zinc-300 text-center m-2"
+  >
+    Pytanie:
+  </h2>
+  <hr
+    aria-orientation="horizontal"
+    className="chakra-divider css-1upb9tn"
+  />
+  <p>
+    Who is the parrot?
+  </p>
+  <h2
+    className="text-md font-extralight text-zinc-300 text-center m-2"
+  >
+    Udzielona odpowiedź
+  </h2>
+  <hr
+    aria-orientation="horizontal"
+    className="chakra-divider css-1upb9tn"
+  />
+  <p>
+    I hope I am not
+  </p>
+</div>
+`;

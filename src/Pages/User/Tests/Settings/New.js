@@ -6,21 +6,34 @@ import {
   FormLabel,
   Input,
   Select,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { Form, useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Form, useActionData, useLoaderData } from "react-router-dom";
 import TestIcon from "../../../../Components/TestIcon";
-import { dummyData } from "../../../../Data/dummyData";
+import { alertNewTest } from "../../../../Data/AlertData";
+import SearchTest from "../../../../Components/SearchBars/SearchTest";
+import MyAlert from "../../../../Components/Alerts/MyAlert";
 
 export default function () {
   const [name, setName] = useState("");
   const [nameBlur, touchName] = useState(false);
+  const [test, setTest]= useState(null)
+  const actionData=useActionData()
+  const {isOpen, onOpen, onClose}=useDisclosure()
   const nameError = nameBlur && name === "";
-    const loaderData=dummyData
-
-    const makeTestIcons=loaderData.tests.map((e)=><TestIcon {...e}  />)
+  const alertData=actionData ? alertNewTest.positive: alertNewTest.negative
+  useEffect(
+    ()=>{
+      setName('')
+      touchName(false)
+      setTest(null)
+    },[actionData]
+  )
+    console.log(actionData)
   return (
-    <Form className="my-10 ">
+    <Form className="my-10 " method='post'>
+      <MyAlert isOpen={isOpen} onClose={onClose} {...alertData} /> 
       <FormControl isInvalid={nameError} w='500px'>
         <FormLabel>Nazwa testu</FormLabel>
         <Input
@@ -33,30 +46,26 @@ export default function () {
         />
         <FormErrorMessage>Nazwa jest wymagana.</FormErrorMessage>
       </FormControl>
+    
       <div className="m-10 mt-14">
         <b className="bold-serif">Dodaj pakiet do testów</b>
         <i className='block'>
-          Jeśli nie dobierzesz pakietów zostanie wygenerowany pusty test.
+          Jeśli nie dobierzesz pakietu zostanie wygenerowany pusty test.
         </i>
       </div>
-      <Flex gap='6' className="m-10">
-        <FormControl>
-          <FormLabel>Pakiet</FormLabel>
-          <Select></Select>
-        </FormControl>
-        <button className="action-button">
-            Dodaj
-        </button>
-      </Flex>
+      <SearchTest choseTestHandler={setTest} buttonText={'Wybierz'} color='sel'/>
       <Box className="m-12" >
-        <p className="sans-serif my-6">Dodane pakiety:</p>
+        <p className="sans-serif my-6">Wybrany pakiet:</p>
         <Flex>
-            {makeTestIcons}
+          {test!=null &&<> <input readOnly name="test_id" value={test.id} className="hidden" /> <TestIcon {...test} onClick={()=>setTest(null)} /></>}
         </Flex>
 
       </Box>
       <Flex justifyContent={'right'}>
-      <button className=" action-button ">Stwórz test</button>
+      <button className=" action-button " onClick={()=>{
+      
+        onOpen()
+      }}>Stwórz test</button>
       </Flex>
     </Form>
   );

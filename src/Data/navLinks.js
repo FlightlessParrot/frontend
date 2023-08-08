@@ -69,29 +69,38 @@ export const questMobileLinks={
 
 export const userMainLinks={
   MainNav:[
-
+    {
+      id: 0.1,
+      url: '/user/team/create',
+      icon: <ChevronRightIcon />,
+      name: 'Zespoły',
+      onlyTeacher: true
+    },
   {
-    id:0,
+    id:1.0,
     url:'/user/tests',
     icon: <ChevronRightIcon />,
     name: 'Testy'
   },
   {
-    id:2,
-    url:'/user/test/create',
+    id:1.2,
+    url:'/user/account',
     icon: <ChevronRightIcon />,
     name: 'Konto'
 
   },
   {
-    id:3,
-    url:'/user/test/create-test',
+    id:1.3,
+    url:'/logout',
     icon: <ChevronRightIcon />,
     name: 'Wyloguj',
     class: 'outline-link order-last'
 
 
-  }],
+  },
+  
+  ],
+
   Help:[
   {
     id:23,
@@ -123,14 +132,36 @@ export const testLinks=[
   },
   {
     id:3,
-    url:'/user/test/create-test',
+    url:'/user/tests/questions/settings',
     icon: <ArrowRightIcon/>,
     name: 'Zarządzaj pytaniami'
   },
   {
     id:4,
-    url:'/user/test/create-test',
+    url:'/user/tests/statistics/test/',
     icon: <ArrowRightIcon/>,
     name: 'Statystyki'
   }
+];
+
+export const teacherLinks=[
+
+  {
+    id:1,
+    url:'/user/team/create',
+    icon: <ArrowRightIcon/>,
+    name: 'Dodaj zespół'
+  },
+  {
+    id:2,
+    url:'/user/team/modify',
+    icon: <ArrowRightIcon/>,
+    name: 'Modyfikuj zespół'
+  },
+  {
+    id:3,
+    url:'/user/team/handbook',
+    icon: <ArrowRightIcon/>,
+    name: 'Udostępnij materiały'
+  },
 ];

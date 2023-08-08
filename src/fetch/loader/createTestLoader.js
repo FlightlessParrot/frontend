@@ -1,11 +1,9 @@
 
-export default async function createTestLoader({params, request})
+import universalFetchSchema from "../universalFetchSchema"
+
+export default async function createTestLoader({params})
 {
-return {
-   standart: [{name: 'Anatomia dla programistów - czyli to, co przegapiłeś w szkole', id: 0},
-    {name: 'Podstawy biologii - czyli dlaczego klepanie w kąkuter to nie wszystko', id: 1}],
-    custom: [
-       {name: 'Jak leczyć uzależnienie od klikania w kąkuter', id: 2}
-    ]
-}
+   const response = await universalFetchSchema(null,'/tests/find','post','/login', true);
+
+return Array.isArray(response) ?response : [];
 }
