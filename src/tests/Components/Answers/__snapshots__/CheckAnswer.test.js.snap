@@ -2,7 +2,7 @@
 
 exports[`test Check Answer Component test happy component render correctly 1`] = `
 <div
-  className="flex flex-col bg-sel p-4 max-w-sm rounded"
+  className="flex flex-col bg-sel p-4   m-4 max-w-fit rounded"
 >
   <svg
     className="chakra-icon css-h24txs"
@@ -23,9 +23,15 @@ exports[`test Check Answer Component test happy component render correctly 1`] =
     aria-orientation="horizontal"
     className="chakra-divider css-1upb9tn"
   />
-  <p>
-    Who is the parrot?
-  </p>
+  <div
+    className="css-gmuwbf"
+  >
+    <p
+      className="max-w-lg "
+    >
+      Who is the parrot?
+    </p>
+  </div>
   <h2
     className="text-md font-extralight text-zinc-300 text-center m-2"
   >
@@ -35,15 +41,19 @@ exports[`test Check Answer Component test happy component render correctly 1`] =
     aria-orientation="horizontal"
     className="chakra-divider css-1upb9tn"
   />
-  <p>
-    I hope I am not
-  </p>
+  <div
+    className="css-k1i3ui"
+  >
+    <p>
+      I hope I am not
+    </p>
+  </div>
 </div>
 `;
 
 exports[`test Check Answer Component test null component render correctly 1`] = `
 <div
-  className="flex flex-col bg-sel p-4 max-w-sm rounded"
+  className="flex flex-col bg-sel p-4   m-4 max-w-fit rounded"
 >
   <h2
     className="text-md font-extralight text-zinc-300 text-center m-2"
@@ -54,9 +64,15 @@ exports[`test Check Answer Component test null component render correctly 1`] = 
     aria-orientation="horizontal"
     className="chakra-divider css-1upb9tn"
   />
-  <p>
-    Who is the parrot?
-  </p>
+  <div
+    className="css-gmuwbf"
+  >
+    <p
+      className="max-w-lg "
+    >
+      Who is the parrot?
+    </p>
+  </div>
   <h2
     className="text-md font-extralight text-zinc-300 text-center m-2"
   >
@@ -66,15 +82,19 @@ exports[`test Check Answer Component test null component render correctly 1`] = 
     aria-orientation="horizontal"
     className="chakra-divider css-1upb9tn"
   />
-  <p>
-    I hope I am not
-  </p>
+  <div
+    className="css-k1i3ui"
+  >
+    <p>
+      I hope I am not
+    </p>
+  </div>
 </div>
 `;
 
 exports[`test Check Answer Component test sad component render correctly 1`] = `
 <div
-  className="flex flex-col bg-sel p-4 max-w-sm rounded"
+  className="flex flex-col bg-sel p-4   m-4 max-w-fit rounded"
 >
   <div
     className="rounded-full p-4 bg-red-600 w-[60px] h-[60px] flex justify-center items-center"
@@ -99,9 +119,15 @@ exports[`test Check Answer Component test sad component render correctly 1`] = `
     aria-orientation="horizontal"
     className="chakra-divider css-1upb9tn"
   />
-  <p>
-    Who is the parrot?
-  </p>
+  <div
+    className="css-gmuwbf"
+  >
+    <p
+      className="max-w-lg "
+    >
+      Who is the parrot?
+    </p>
+  </div>
   <h2
     className="text-md font-extralight text-zinc-300 text-center m-2"
   >
@@ -111,8 +137,13 @@ exports[`test Check Answer Component test sad component render correctly 1`] = `
     aria-orientation="horizontal"
     className="chakra-divider css-1upb9tn"
   />
-  <p>
-    I hope I am not
-  </p>
+  <div
+    className="css-k1i3ui"
+  >
+     
+    <p>
+      I hope I am not
+    </p>
+  </div>
 </div>
 `;

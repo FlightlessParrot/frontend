@@ -1,0 +1,56 @@
+@use './predefined.scss' as p;
+:root{
+    --review-div-color: green
+}
+.review-father{
+    perspective: 1000px;
+}
+
+.review-appear{
+    background-color: p.$baltic;
+    position: relative;
+    right: 50vw;
+    top:-50vh;
+    transform: scale(0.2);
+}
+
+.review-appear-active{
+    background-color: p.$baltic;
+    right: 20vw;
+    position: relative;
+    top:-20vh;
+    transition: all 500ms linear;  
+    transform-style: preserve-3d;
+
+    transform: scale(0.7) rotate3d(2,3,3,-200deg);
+   
+}
+
+
+.review-enter-done, .review-exit{
+    background-color: var(--review-div-color, green);
+    transform-style: preserve-3d;
+    right: 0px;
+    top: 0vh;
+    position: relative;
+    transform: scale(1) rotate3d(1,0,1,362deg);
+    transition: right 500ms linear, top 500ms linear,transform 500ms ease-out, background-color 1000ms ease-in-out;
+}
+ 
+
+
+.review-exit-active{
+    transition: all 500ms linear;
+    position: relative;
+    right: -10vh;
+    transform-style: preserve-3d;
+    transform: scale3d(0.5,0.5,0.5);
+}
+.review-exit-done{
+    transition: all 500ms linear;
+    position: relative;
+    right: 0vh;
+    transform-style: preserve-3d;
+    transform: scale3d(0,0,0) rotate3d(2,2,1,-200deg);
+}
+

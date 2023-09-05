@@ -1,6 +1,6 @@
 
 import MyAlert from "../../../../Components/Alerts/MyAlert";
-import { alertData, alertDeleteTest } from "../../../../Data/AlertData";
+import {alertDeleteTest } from "../../../../Data/alertData";
 import { useEffect, useState } from "react"
 import SearchTest from "../../../../Components/SearchBars/SearchTest"
 import universalFetchSchema from "../../../../fetch/universalFetchSchema";
@@ -23,7 +23,7 @@ export default function Delete() {
 
         }}
         fn()
-      },[test]
+      },[test, onOpen]
     )
 
     const alertData = response ? alertDeleteTest.positive : alertDeleteTest.negative;

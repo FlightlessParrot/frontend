@@ -89,7 +89,7 @@ export default function MakePairs({ squares, isValid, answersController }) {
       <div>
         <h2 className="lead">Połącz kafelki w pary.</h2>
         <i>
-          Kliknij na jeden z ich, a gdy podświetli się na zielono, wybierz
+          Kliknij na jeden z ich, a gdy podświetli się, wybierz
           odpowiadający mu element.
         </i>
         <Flex wrap={'wrap'} gap={12} marginY={'40px'}>{jsxElements}</Flex>

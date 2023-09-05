@@ -10,16 +10,19 @@ const data=[
     surname: 'anotherSurname'}
 ]
 it('test component render correctly',  ()=>{
-    render(<UniversalTable data={data} />)
+    render(<UniversalTable data={data} headersObject={{name: 'name',
+    surname: 'surname'}} name="Names and Surnames"/>)
 
     const names=screen.getAllByText('ame', {exact: false})
     const category=screen.getByText('surname')
     const theName=screen.getByText('theName')
+    const title=screen.getByText("Names and Surnames")
     const anotherSurname=screen.getByText('anotherSurname');
-    expect(names).toHaveLength(6)
+    expect(names).toHaveLength(7)
     expect(category).toBeInTheDocument()
     expect(theName).toBeInTheDocument()
     expect(anotherSurname).toBeInTheDocument()
+    expect(title).toBeInTheDocument()
     
 })
 

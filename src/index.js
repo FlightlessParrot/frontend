@@ -30,7 +30,7 @@ const theme = extendTheme({
     global: {
       body: {
         bg: "",
-        color: 'white'
+        color: ""
       }
     }
   },

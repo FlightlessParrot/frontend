@@ -7,7 +7,7 @@ export default function Tests(props) {
     const showTitle = location.pathname === '/user/tests'
   return (
     <TestUserLayout>
-        {showTitle && <><Title title='Testy' newClass='mt-16' />
+        {showTitle && <><Title title='Testy'  />
         <h2 className="lead p-4">Generuj testy i zarządzaj nimi.</h2></>}
       
             <Outlet />

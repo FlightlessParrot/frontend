@@ -19,8 +19,8 @@ export default function Create() {
   return (
     <div>
          <MyAlert isOpen={isOpen} onClose={onClose} status='error' title='Coś poszło nie tak' description='Nie udało się utworzyć grupy' />
-        <Title title='Stwórz test'></Title>
-        <Box p={[4,8]}>
+        <Title title='Utwórz zespół'></Title>
+        <Box p={[2,4,4, 8, 16]}>
         <Form method='post'>
             <FormControl maxW='1000px' >
                 <FormLabel>Nazwa zespołu</FormLabel>

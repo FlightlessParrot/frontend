@@ -1,10 +1,10 @@
 import { CloseButton, Flex } from "@chakra-ui/react";
 
 export default function TestIcon({name, id, onClick=null, path}) {
-  console.log(path)
+
   return (
     <div className="relative top-0 rounded-lg border border-C_gray w-[200px] h-[200px] overflow-clip" key={id}>
-        <img src={path} alt='' className="object-cover w-full h-full"  />
+        <img src={process.env.REACT_APP_BACKEND+path} alt='' className="object-cover w-full h-full"  />
         <div className="absolute top-0 left-0 z-20 w-[200px] h-[200px]">
         {onClick!==null &&<CloseButton onClick={onClick}  className="float-right" />}
            <Flex justify={'center'} alignItems={'end'} h='full' p='8px'>

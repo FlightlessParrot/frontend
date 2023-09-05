@@ -9,7 +9,7 @@ import sendMessageAction from "./fetch/action/sendMessage";
 import registerAction from "./fetch/action/register";
 import loginAction from "./fetch/action/login";
 import VerifyEmail from "./Pages/User/VerifyEmail";
-
+import FlashcardsSetting from "./Pages/User/FlashcardsSetting";
 import RemindPassword from "./Pages/Quest/RemindPassword";
 import resetPasswordAction, {
   sendNewPasswordAction,
@@ -40,8 +40,8 @@ import TestStatistics from "./Components/Statistics/TestStatistics";
 import getTestStatistics from "./fetch/loader/getTestStatistics";
 
 import QuestionStatistics from "./Components/Statistics/QuestionStatistics";
-import BuildiingPage from "./Pages/BuildiingPage";
 
+import Account from "./Pages/Settings/Account";
 import Logout from "./Pages/User/Logout";
 import Teacher from "./Pages/Teacher/Teacher";
 import Create from "./Pages/Teacher/Create";
@@ -53,18 +53,51 @@ import teamLoader from "./fetch/loader/teamLoader";
 import Handbook from "./Pages/Teacher/Handbook/Handbook";
 import ModifyHandbooks from "./Pages/Teacher/Handbook/ModifyHandbooks";
 import modifyHandbookLoader from "./fetch/loader/modifyHandbookLoader";
-import CheckAnswer from "./Components/Answers/CheckAnswer";
+
+import TestReview from "./Pages/User/Tests/TestReview";
+import testReviewLoader from "./fetch/loader/testReviewLoader";
+import MakeEgzam from "./Pages/Teacher/MakeEgzam";
+import createEgzamAction from "./fetch/action/createEgzamAction";
+import ChooseEgzamSettings from "./Pages/Teacher/ChooseEgzamSettings";
+import CreateOpenQuestion from "./Pages/Teacher/CreateOpenQuestion";
+import ChooseTeam from "./Pages/Teacher/ChooseTeam";
+import ShowTestResults from "./Pages/Teacher/ShowTestResults";
+import getEgzamsLoader from "./fetch/loader/getEgzamsLoader";
+import showEgzamLoader from "./fetch/loader/showEgzamLoader";
+import Egzams from "./Pages/Teacher/Egzams";
+import Notyfications from "./Pages/User/Notyfications";
+import notyficationsLoader from "./fetch/loader/notyficationsLoader";
+import OpenQuestionCheck from "./Pages/Teacher/OpenQuestionCheck";
+import getOpenQuestionToGrade from "./fetch/loader/getOpenQuestionToGrade";
+import createOpenQuestionAction from "./fetch/action/createOpenQuestionAction";
+import flashcardsSettingLoader from "./fetch/loader/flashcardsSettingLoader"
+import flashcardsAction from "./fetch/action/flashcardsAction"
+import Flashcards from "./Pages/User/Flashcards"
+import UserData from "./Pages/Settings/UserData";
+import getAdressLoader from "./fetch/loader/getAdressLoader";
+import updateAdressAction from "./fetch/action/updateAdressAction";
+import ChangePassword from "./Pages/Settings/ChangePassword";
+import updatePasswordAction from "./fetch/action/updatePasswordAction";
+import Subscriptions from "./Pages/Settings/Subscriptions";
+import getSubscriptionsLoader from "./fetch/loader/getSubscriptionsLoader";
+import DeleteTeam from "./Pages/Teacher/DeleteTeam";
+import AfterCreation from "./Pages/User/Tests/Settings/AfterCreation";
+import getLatestTest from "./fetch/loader/getLatestTest";
+import AdminSubscriptions from "./Pages/Admin/Subscriptions/AdminSubscriptions";
+import Admin from "./Pages/Admin/Admin";
+import createSubscriptionAction from "./fetch/action/createSubscriptionAction";
+import getAdminSubscriptionsLoader from "./fetch/loader/getAdminSubscriptionsLoader";
+import ManageTests from "./Pages/Admin/Tests/ManageTests";
+import adminTestLoader from "./fetch/loader/adminTestLoader";
+import AdminTestSettings from "./Pages/Admin/Tests/AdminTestSettings";
+import adminTestSettingsLoader from "./fetch/loader/adminTestSettingsLoader";
+import createAdminTest from "./fetch/action/createAdminTest";
 
 
 const router = createBrowserRouter([
   {
-    path: '/test',
-    element: <CheckAnswer question={'kra'} answer={'tak, KRA'} correct={false}/>
-
-  },
-  {
     path: "/logout",
-    element: <Logout />
+    element: <Logout />,
   },
   {
     path: "/test",
@@ -113,16 +146,36 @@ const router = createBrowserRouter([
     loader: checkIfAuth,
     children: [
       {
-        path: 'help',
-        element: <UserHelp />
+        path: "help",
+        element: <UserHelp />,
       },
       {
-        path: 'report-error',
-        element: < UserReportBug />
+        path: "report-error",
+        element: <UserReportBug />,
       },
       {
-        path: 'account',
-        element: <BuildiingPage />
+        path: "account",
+        element: <Account />,
+        children: [
+          {
+            path: 'data',
+            element: <UserData />,
+            loader: getAdressLoader,
+            action: updateAdressAction,
+            children:[
+              {
+                path:'password/update',
+                element: <ChangePassword />,
+                action: updatePasswordAction
+              }
+            ]
+          },
+          {
+            path: 'subscriptions',
+            element: <Subscriptions />,
+            loader:getSubscriptionsLoader
+          }
+        ]
       },
       {
         path: "tests",
@@ -130,7 +183,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "create",
-            element: <CreateTestInstance />,
+            element: <CreateTestInstance title />,
             loader: createTestLoader,
             action: createTestAction,
           },
@@ -147,9 +200,14 @@ const router = createBrowserRouter([
                 path: "delete",
                 element: <Delete />,
               },
+              {
+                path:'newest',
+                element: <AfterCreation />,
+                loader: getLatestTest
+              }
             ],
           },
-        
+
           {
             path: "questions/settings",
             element: <QuestionsSettings />,
@@ -160,70 +218,129 @@ const router = createBrowserRouter([
             loader: globalStatisticsLoader,
             children: [
               {
-                path: ':testId',
+                path: ":testId",
                 element: <TestStatistics />,
                 loader: getTestStatistics,
-                children:[
+                children: [
                   {
-                path: "question/:questionId?",
-                element: <QuestionStatistics/>,
-                loader: async ({params})=>({testId:params.testId, questionId:params.questionId})
-                },
-                ]
+                    path: "question/:questionId?",
+                    element: <QuestionStatistics />,
+                    loader: async ({ params }) => ({
+                      testId: params.testId,
+                      questionId: params.questionId,
+                    }),
+                  },
+                ],
               },
-              
             ],
           },
+          {
+            
+              path: 'flashcards',
+              element: <FlashcardsSetting />,
+              loader: flashcardsSettingLoader,
+              action: flashcardsAction,
+              children: [
+                {
+                  path: 'start',
+                  element: <Flashcards />
+                }
+              ]
+          }
         ],
       },
       {
-        path: 'team',
+        path: "team",
         element: <Teacher />,
-        children:[
+        children: [
           {
-            path: 'create',
+            path: "create",
             element: <Create />,
-            action: createTeamAction
+            action: createTeamAction,
           },
           {
-            path: 'modify',
-            element: <Modify/>,
+            path: "modify",
+            element: <Modify />,
             loader: teamsLoader,
             children: [
               {
-                path: ':team',
+                path: ":team",
                 element: <AfterUserChoseTeam />,
-                loader: teamLoader
-              }
-            ]
+                loader: teamLoader,
+              },
+            ],
           },
           {
-            path: 'handbook',
+            path: "handbook",
             element: <Handbook />,
             loader: teamsLoader,
-            children: [{
-              path:'team/:team',
-              element: <ModifyHandbooks/>,
-              loader: modifyHandbookLoader
-            }
-          ]
+            children: [
+              {
+                path: "team/:team",
+                element: <ModifyHandbooks />,
+                loader: modifyHandbookLoader,
+              },
+            ],
+          },
+          {
+            path: "egzam",
+            element: <MakeEgzam />,
+            loader: teamsLoader,
+            children: [
+              {
+                path: "teams/:teamId",
+                element: <ChooseEgzamSettings />,
+                loader: createTestLoader,
+                action: createEgzamAction,
+              },
+            ],
+          },
+          {
+            path: "egzam/teams/:teamId/egzams/:testId/open-questions/create",
+            element: <CreateOpenQuestion/>,
+            action: createOpenQuestionAction
+          },
+          {
+            path:'delete',
+            element: <DeleteTeam />,
+            loader:teamsLoader
+          },
+          {
+            path: "egzams",
+            element: <ChooseTeam/>,
+            loader: teamsLoader,
+            children: [
+              {
+                path: 'teams/:teamId',
+                element: <Egzams />,
+                loader: getEgzamsLoader,
+                children: [
+                  {
+                    path: 'egzams/:testId',
+                    element: <ShowTestResults />,
+                    loader: showEgzamLoader
+                  }
+                ]
+              }
+            ]
           }
-        ]
+        ],
       },
+
       {
         path: "test/:generatedTestId",
         element: <SolveTest />,
         loader: solveTestLoader,
         action: sendFilledTestAction,
-        children:[
-           {
-        path: "/review",
-        element: <div />,
-        
+        children: [
+          {
+            path: "review",
+            element: <TestReview />,
+            loader: testReviewLoader,
+          },
+        ],
       },
-        ]
-      },
-     
+
       {
         path: "test/:generatedTestId/summary",
         element: <TestSummary />,
@@ -234,7 +351,45 @@ const router = createBrowserRouter([
         element: <VerifyEmail />,
         loader: verifyEmailLoader,
       },
+      {
+        path:'notyfications',
+        element: <Notyfications />,
+        loader: notyficationsLoader
+      },
+      {
+        path: 'check/tests/:id/open-questions',
+        element: <OpenQuestionCheck />,
+        loader: getOpenQuestionToGrade
+      },
+      {
+      path: 'admin',
+      element: <Admin />,
+      children: [
+        {
+          path:'subscriptions',
+          element: <AdminSubscriptions />,
+          action: createSubscriptionAction,
+          loader: getAdminSubscriptionsLoader
+        },
+        {
+        path: 'tests',
+        element: <ManageTests />,
+        loader: adminTestLoader,
+        action: createAdminTest,
+        children: [
+          {
+            path: 'settings/:testId',
+            element: <AdminTestSettings />,
+            loader: adminTestSettingsLoader,
+            
+          }
+        ]
+        }
+      ]
+      }
+   
     ],
+    
   },
 ]);
 

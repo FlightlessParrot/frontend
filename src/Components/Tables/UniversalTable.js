@@ -10,14 +10,14 @@ import {
 } from "@chakra-ui/react";
 
 
-export default function UniversalTable({ data }) {
+export default function UniversalTable({ data,headersObject,name }) {
   
-  const theTable = data.length>0 ? new myTable(data): null;
+  const theTable = data.length>0 ? new myTable(data, headersObject): null;
 
   return (
       theTable && <TableContainer variant='striped' overflowX={'auto'}>
       <Table>
-      <TableCaption>Członkowie zespołu</TableCaption>
+      <TableCaption>{name}</TableCaption>
         <Thead>
           <Tr>{theTable.headers()}</Tr>
         </Thead>
@@ -28,14 +28,16 @@ export default function UniversalTable({ data }) {
 }
 
 class myTable {
-  constructor(objectsArray) {
-    this.categories = objectsArray[0];
+  constructor(objectsArray, headersObject) {
+ 
+    this.categories = headersObject
     this.data = objectsArray;
   }
 
   set categories(object) {
-    return (this.tableCategories = Object.keys(object));
+    return this.tableCategories=Object.values(object);
   }
+  
   get categories() {
     return this.tableCategories;
   }

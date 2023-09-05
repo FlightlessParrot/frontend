@@ -6,6 +6,7 @@ import UserCard from "../../../Components/Cards/UserCard"
 import universalFetchSchema from "../../../fetch/universalFetchSchema"
 import UniversalTable from '../../../Components/Tables/UniversalTable'
 import useShowToast from "../../../hooks/useShowToast"
+import { getCookie } from "../../../cookies/getCookie"
 export default function AfterUserChoseTeam() {
     const loaderData=useLoaderData()
     const [search, setSearch]=useState('')
@@ -14,7 +15,9 @@ export default function AfterUserChoseTeam() {
     const revalidator=useRevalidator()
     const [toastData, setToastData]=useState(null)
     const toast=useShowToast()
-    const usersCardJsx=users.map(
+    const filtredUsers=users.filter(e=>e.id!=getCookie('user-id'));
+
+    const usersCardJsx=filtredUsers.map(
       (e)=><UserCard userModel={e} key={e.id} getUserIdOnClick={setNewUser} members={loaderData.members} />
     )
     useEffect(
@@ -65,7 +68,7 @@ export default function AfterUserChoseTeam() {
         }
       }
     )
-
+    const headers={id:'id', name:'Imię i nazwisko', email: 'Adres email'}
   return (<Stack spacing={'60px'}>
     <FormControl>
         <FormLabel>Wybrany zespół</FormLabel>
@@ -75,7 +78,7 @@ export default function AfterUserChoseTeam() {
     <Wrap spacing='40px'>
       {usersCardJsx}
       </Wrap>
-      <UniversalTable data={loaderData.members} /></Stack>
+      <UniversalTable data={loaderData.members} headersObject={headers} name='Członkowie zespołu' /></Stack>
   )
 }
 

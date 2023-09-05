@@ -43,20 +43,20 @@ export const UserAndPassword = (props) => {
         <div className='flex flex-col gap-10 m-10'><div>
             <FormControl  isInvalid={errorMail}>
                 <FormLabel>e-mail</FormLabel>
-            <Input name='email' value={mail} onChange={(e)=>setMail(e.target.value)} onBlur={(e)=>touchMail(true)} required project='project' type='email' />
+            <Input name='email' autoComplete='email' value={mail} onChange={(e)=>setMail(e.target.value)} onBlur={(e)=>touchMail(true)} required project='project' type='email' />
             <FormErrorMessage>Podaj e-mail.</FormErrorMessage>
             </FormControl></div>
             <div className='grid lg:auto-cols-fr gap-4'>
             <div className='col-start-1'>
             <FormControl isInvalid={errorPassword}>
                 <FormLabel>Hasło</FormLabel>
-            <Input type='password' name='password' value={password} onChange={(e)=>setPassword(e.target.value.trim())} onBlur={(e)=>touchPassword(true)} required project='project' />
+            <Input type='password' name='password' autoComplete='new-pasword' value={password} onChange={(e)=>setPassword(e.target.value.trim())} onBlur={(e)=>touchPassword(true)} required project='project' />
             <FormErrorMessage>Hasło musi się składać z conajmniej 8 znaków, zawierać małe i duże litery oraz cyfry.</FormErrorMessage>
             </FormControl></div>
             <div className='min-w-32 lg:col-start-2'>
             <FormControl isInvalid={errorConfirm} >
                 <FormLabel>Powtórz hasło</FormLabel>
-            <Input type='password' value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value.trim())} required project='project' />
+            <Input type='password' autoComplete='new-password' value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value.trim())} required project='project' />
             <FormErrorMessage>Hasła nie są identyczne.</FormErrorMessage>
             </FormControl></div></div>
         </div>

@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Stack, Switch } from "@chakra-ui/react";
+import {Stack } from "@chakra-ui/react";
 import { useReducer } from "react";
 import Switcher from "./Switcher";
 
@@ -9,6 +9,7 @@ export default function QuestionSettings() {
       questionsManyAnswers: ['Pytania wielokrotnego wyboru', 'many-answers'],
       questionsOrder:  ['Pytania typu ustaw w kolejności', 'order'],
       questionsPairs: ['Pytania typu znajdź pary', 'pairs'],
+      questionsShortAnswer: ['Pytania typu krótka odpowiedź pisemna', 'short-answer'],
       questionsAll: ['Wszystkie pytania',true],
     
   }
@@ -17,6 +18,7 @@ export default function QuestionSettings() {
         questionsManyAnswers: true,
         questionsOrder: true,
         questionsPairs: true,
+        questionsShortAnswer: true,
         questionsAll: true,
       };
       const questionsReducer = (state, action) => {
@@ -30,11 +32,26 @@ export default function QuestionSettings() {
             questionsManyAnswers: value,
             questionsOrder: value,
             questionsPairs: value,
+            questionsShortAnswer: value,
             questionsAll: value,
           };
         }
         newState[node.name] = node.checked;
-        if(!(node.checked)){  newState.questionsAll=false; }
+
+        let allAreChecked=true
+        Object.entries(newState).forEach(
+          ([key, value])=>{
+            if(key!=='questionsAll')
+            {
+              if(!value)
+              {
+                allAreChecked=false
+              }
+            }
+          }
+        );
+        newState.questionsAll=allAreChecked
+
         return { ...newState };
       };
      

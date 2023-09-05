@@ -7,15 +7,15 @@ describe('test Check Answer Component', ()=>{
         answer: 'I hope I am not'
     }
 it('test null component render correctly', ()=>{
-    const app=renderer.create(<CheckAnswer {...data} />)
+    const app=renderer.create(<CheckAnswer {...data} ><p>{data.answer}</p></CheckAnswer>).toJSON()
     expect(app).toMatchSnapshot()
 })
 it('test happy component render correctly', ()=>{
-    const app=renderer.create(<CheckAnswer {...data} correct />)
+    const app=renderer.create(<CheckAnswer {...data} correct ><p>{data.answer}</p></CheckAnswer>).toJSON()
     expect(app).toMatchSnapshot()
 })
 it('test sad component render correctly', ()=>{
-    const app=renderer.create(<CheckAnswer {...data} correct={false}/>)
+    const app=renderer.create(<CheckAnswer {...data} correct={false}> <p>{data.answer}</p></CheckAnswer>).toJSON()
     expect(app).toMatchSnapshot()
 })
 

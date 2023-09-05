@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Select, Box } from "@chakra-ui/react";
 
-export default function ChooseTestQuestionsNumber() {
+export default function ChooseTestQuestionsNumber({label='Ilość pytań', name="questionsNumber" }) {
     const makeQuestionNumbers = () => {
         const y = [];
         for (let x = 20; x <= 150; x += 10) {
@@ -14,8 +14,8 @@ export default function ChooseTestQuestionsNumber() {
     }
   return (
     <FormControl as={Box} maxW="fit-content">
-              <FormLabel>Ilość pytań</FormLabel>
-              <Select name="questionsNumber" placeholder="10" maxW={"150px"}>
+              <FormLabel>{label}</FormLabel>
+              <Select name={name} placeholder="10" maxW={"150px"}>
                 {makeQuestionNumbers()}
               </Select>
             </FormControl>

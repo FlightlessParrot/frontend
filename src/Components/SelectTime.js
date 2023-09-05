@@ -8,7 +8,7 @@ export default function SelectTime({onChange, value}) {
         <Select placeholder='Wybierz okres' onChange={onChange} value={value}>
             <option value={'-1 week'}>Ostatni tydzień</option>
             <option value={'-1 month'}>Ostatni miesiąc</option>
-            <option value={'-100 years'}>Ostatni rok</option>
+            <option value={'-100 years'}>Od początku subskrypcji</option>
         </Select>
         </FormControl>
 

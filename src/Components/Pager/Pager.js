@@ -1,5 +1,5 @@
 
-import { Stack } from "@chakra-ui/react"
+import { Flex} from "@chakra-ui/react"
 import usePagerController from "../../hooks/usePagerController"
 import useReturnNumberWithFriends from "../../hooks/useReturnNumberWithFriends"
 import PagerLowBar from "./PagerLowBar"
@@ -14,7 +14,7 @@ export default function Pager({blocks, howManyPerPage}) {
         array.push(i)
         i++
         
-    }while(i<state.howManyPages)
+    }while(i<=state.howManyPages)
     return array
    }
    const pagesArray=getPagesArray()
@@ -23,9 +23,11 @@ export default function Pager({blocks, howManyPerPage}) {
 
 
   return (
-    <Stack>
-        {state.elements}
+    <Flex align={'center'} direction={'column'} pb={[2,4,8,16]} >
+        <Flex align={'center'} direction={'column'} p={[2,4,8,16]} gap={10}>
+          {state.elements}
+        </Flex>
       <PagerLowBar pagesNumbersArray={lowBarNumbers} currentNumber={state.currentPage} dispatch={dispatch} />
-    </Stack> 
+    </Flex> 
   )
 }  

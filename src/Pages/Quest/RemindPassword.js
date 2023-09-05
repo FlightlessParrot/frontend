@@ -3,7 +3,7 @@ import { QuestLoginLayout } from "../../Components/Layouts/QuestLoginLayout";
 import { useEffect, useState } from "react";
 import { useActionData, Form } from "react-router-dom";
 import MyAlert from "../../Components/Alerts/MyAlert";
-import { alertRemindData } from "../../Data/AlertData";
+import { alertRemindData } from "../../Data/alertData";
 
 export default function RemindPassword() {
   const [email, setEmail]=useState('')
@@ -13,7 +13,7 @@ export default function RemindPassword() {
   const {isOpen, onOpen, onClose}=useDisclosure()
   useEffect(
     ()=>{
-      const match=email.match(/^[a-zA-z0-9-\.\_]+@[a-zA-Z]+\.[a-zA-z]{2,}$/)
+      const match=email.match(/^[a-zA-z0-9-._]+@[a-zA-Z]+.[a-zA-z]{2,}$/)
       if(wasTouched && !match)
       {
        

@@ -10,7 +10,7 @@ export default function OnlyOneAnswer({answers, isValid, answersController}) {
     ()=>{
       answersController(state)
       isValid(validation)
-    },[state]
+    },[state, answersController, isValid, validation]
   )
     const answerRadios =  answers.map((e) => {
         return <FormControl key={e.id}  display={'flex'} alignItems={'center'} gap='6' marginY='18px'>

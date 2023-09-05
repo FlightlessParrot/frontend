@@ -2,10 +2,10 @@
 import ContactData from "./Forms/ContactData"
 import Message from "./Forms/Message"
 import DefaultFieldsInstruction from "./Forms/DefaultFieldsInstruction"
-import { useEffect, useState } from "react"
+
 import { Form } from "react-router-dom"
 import MyAlert from "./Alerts/MyAlert";
-import { alertData } from "../Data/AlertData";
+import { alertData } from "../Data/alertData";
 import { useActionData } from "react-router-dom";
 import { useDisclosure } from "@chakra-ui/react"
 

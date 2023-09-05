@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Create Open Questions Component test component render correctly 1`] = `
+<form>
+  <h1
+    className="inline-block text-center p-4 md:p-8 px-12 border-b-4 article-title-font border-b-baltic "
+    data-testid="Title-h1"
+  >
+    Dodaj otwarte pytania do egzaminu
+  </h1>
+  <div
+    className="css-18y4t9"
+  >
+    <div
+      className="chakra-form-control css-0"
+      role="group"
+    >
+      <label
+        className="chakra-form__label flex items-end p-4 cursor-pointer action-button gap-10 css-uvho5g"
+        htmlFor="input"
+        id="field-:r0:-label"
+      >
+        <label
+          className="chakra-checkbox css-1o501kh"
+          onClick={[Function]}
+          readOnly={true}
+        >
+          <input
+            aria-disabled={false}
+            aria-invalid={false}
+            checked={false}
+            className="chakra-checkbox__input"
+            disabled={false}
+            id="field-:r0:"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            readOnly={true}
+            required={false}
+            style={
+              Object {
+                "border": "0",
+                "clip": "rect(0, 0, 0, 0)",
+                "height": "1px",
+                "margin": "-1px",
+                "overflow": "hidden",
+                "padding": "0",
+                "position": "absolute",
+                "whiteSpace": "nowrap",
+                "width": "1px",
+              }
+            }
+            type="checkbox"
+          />
+          <span
+            aria-hidden={true}
+            className="chakra-checkbox__control css-dnty2r"
+            data-readonly=""
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+          />
+        </label>
+         Dodaj zdjęcie
+      </label>
+      <p
+        className="chakra-text css-ax9bdp"
+      >
+        Dopuszczalne formaty to jpg, png oraz webp
+      </p>
+      <input
+        accept=".jpg,.png,.webp"
+        className="hidden"
+        data-testid="fileInput"
+        id="input"
+        name="image"
+        onChange={[Function]}
+        type="file"
+      />
+    </div>
+    <div
+      className="chakra-form-control css-0"
+      role="group"
+    >
+      <label
+        className="chakra-form__label css-uvho5g"
+        htmlFor="field-:r1:"
+        id="field-:r1:-label"
+      >
+        Dodaj pytanie
+      </label>
+      <p
+        className="chakra-text css-ax9bdp"
+      >
+        Pytanie nie może zawierać więcej niż 250 znaków
+      </p>
+      <input
+        aria-required={true}
+        className="chakra-input css-0"
+        disabled={false}
+        id="field-:r1:"
+        maxLength={250}
+        name="question"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Czy pantofelek ma nibynóżkę?"
+        readOnly={false}
+        required={true}
+        value=""
+      />
+    </div>
+    <div
+      className="css-ckyhk3"
+    >
+      <button
+        className="action-button"
+        onClick={[Function]}
+      >
+        Dalej
+      </button>
+       
+    </div>
+    <div
+      className="css-ckyhk3"
+    >
+      <a>
+        Zakończ przygotowanie egzaminu
+      </a>
+    </div>
+  </div>
+</form>
+`;

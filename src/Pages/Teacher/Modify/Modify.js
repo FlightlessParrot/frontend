@@ -1,7 +1,8 @@
-import { FormControl, FormLabel, Select, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import Title from "../../../Components/Title";
 import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ChooseTeamSelect from "../../../Components/Forms/ChooseTeamSelect";
 
 export default function Modify() {
     const loaderData = useLoaderData()
@@ -14,26 +15,20 @@ export default function Modify() {
             {
                 setTeams(loaderData)
             }
-        },[loaderData]
+        },[loaderData, setTeams]
     )
     useEffect(
         ()=>{
             team && navigate('/user/team/modify/'+team)
-        },[team]
+        },[team, navigate]
     )
-    const options=teams.map(
-        (e)=><option key={e.id} value={e.id}> {e.name}</option>
-    )
+   
   return (
     <div>
     <Title title='Modyfikuj zespół' />
-    <Stack padding={[4,8]} spacing={12}>
-    <FormControl>
-    <FormLabel>Wybierz zespół</FormLabel>
-    <Select placeholder="Wybierz zespół" value={team} onChange={e=>setTeam(e.target.value)}>
-        {options}
-    </Select>
-    </FormControl>
+    <Stack padding={[2, 4, 4, 8, 16]} spacing={12}>
+    <ChooseTeamSelect   team={team} setTeam={setTeam}   teams={teams} />
+    
     <Outlet />
     </Stack>
     </div>

@@ -11,6 +11,6 @@ export default async function checkIfAuth() {
     headers: { "X-XSRF-TOKEN": token, Accept: "application/json" },
   };
   const response = await fetch(url, option);
-
+  
   return response.status === 204 ? true : redirect("/login");
 }

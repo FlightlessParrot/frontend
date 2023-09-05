@@ -5,17 +5,16 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  Select,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { Form, Link, useActionData} from "react-router-dom";
 import TestIcon from "../../../../Components/TestIcon";
-import { alertNewTest } from "../../../../Data/AlertData";
+import { alertNewTest } from "../../../../Data/alertData";
 import SearchTest from "../../../../Components/SearchBars/SearchTest";
 import MyAlert from "../../../../Components/Alerts/MyAlert";
 
-export default function () {
+export default function New () {
   const [name, setName] = useState("");
   const [nameBlur, touchName] = useState(false);
   const [test, setTest]= useState(null)
@@ -28,12 +27,13 @@ export default function () {
       setName('')
       touchName(false)
       setTest(null)
+      window.scroll(0,0)
     },[actionData]
   )
-    console.log(actionData)
   return (
     <Form className="my-10 " method='post'>
       <MyAlert isOpen={isOpen} onClose={onClose} {...alertData} /> 
+      {actionData && <Link className="action-button bg-green-600" to='/user/tests/settings/newest'> Edytuj utworzony test</Link>}
       <FormControl isInvalid={nameError} w='500px'>
         <FormLabel>Nazwa testu</FormLabel>
         <Input

@@ -10,13 +10,16 @@ export default function PagerLowBar({pagesNumbersArray,currentNumber, dispatch})
         </PagerNumber>
     })
   return (
-    <Flex >
-        
+    <Flex gap={6} justify={'center'} wrap={['wrap','wrap','no-wrap']}>
+        <Flex   gap={2}>
         <PagerNumber dataTestId='first' onClick={()=>dispatch('first')}><ArrowLeftIcon /></PagerNumber>
         <PagerNumber dataTestId='back' onClick={()=>dispatch('back')}><ChevronLeftIcon /></PagerNumber>
+        </Flex>
             {numbers}
+            <Flex   gap={2}>
         <PagerNumber  dataTestId='next' onClick={()=>dispatch('next')}><ChevronRightIcon /></PagerNumber>
         <PagerNumber dataTestId='last' onClick={()=>dispatch('last')}><ArrowRightIcon /></PagerNumber>
+        </Flex>
     </Flex>
   )
 }

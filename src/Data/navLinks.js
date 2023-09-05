@@ -68,9 +68,17 @@ export const questMobileLinks={
 }
 
 export const userMainLinks={
+
   MainNav:[
     {
       id: 0.1,
+      url: '/user/admin',
+      icon: <ChevronRightIcon />,
+      name: 'Admin',
+      onlyAdmin: true
+    },
+    {
+      id: 0.2,
       url: '/user/team/create',
       icon: <ChevronRightIcon />,
       name: 'Zespoły',
@@ -95,10 +103,7 @@ export const userMainLinks={
     icon: <ChevronRightIcon />,
     name: 'Wyloguj',
     class: 'outline-link order-last'
-
-
   },
-  
   ],
 
   Help:[
@@ -117,8 +122,27 @@ export const userMainLinks={
 
   }]
 }
-
+export const dataLinks=[
+  {
+    id:0,
+    url:'/user/account/data',
+    icon: <ArrowRightIcon/>,
+    name: 'Konto'
+  },
+  {
+    id: 1,
+    url: '/user/account/subscriptions',
+    icon: <ArrowRightIcon/>,
+    name: 'Subskrypcje'
+  }
+]
 export const testLinks=[
+  {
+    id:0,
+    url:'/user/tests/flashcards',
+    icon: <ArrowRightIcon/>,
+    name: 'Fiszki'
+  },
   {
     id:1,
     url:'/user/tests/create',
@@ -153,6 +177,12 @@ export const teacherLinks=[
     name: 'Dodaj zespół'
   },
   {
+    id:1.1,
+    url:'/user/team/delete',
+    icon: <ArrowRightIcon/>,
+    name: 'Usuń zespół'
+  },
+  {
     id:2,
     url:'/user/team/modify',
     icon: <ArrowRightIcon/>,
@@ -163,5 +193,32 @@ export const teacherLinks=[
     url:'/user/team/handbook',
     icon: <ArrowRightIcon/>,
     name: 'Udostępnij materiały'
+  },
+  {
+    id:4,
+    url:'/user/team/egzam',
+    icon: <ArrowRightIcon/>,
+    name: 'Utwórz egzamin'
+  },
+  {
+    id: 5,
+    url:'/user/team/egzams',
+    icon: <ArrowRightIcon/>,
+    name: 'Egzaminy'
+  },
+];
+export  const adminLinks=[
+
+  {
+    id:1,
+    url:'/user/admin/subscriptions',
+    icon: <ArrowRightIcon/>,
+    name: 'Subskrypcje'
+  },
+  {
+    id:2,
+    url:'/user/admin/tests',
+    icon: <ArrowRightIcon/>,
+    name: 'Pakiety'
   },
 ];

@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ModifyQuestion from "./ModifyQuestion"
 import universalFetchSchema from "../../fetch/universalFetchSchema";
 import Question from "../Question";
 import MyAlert from "../Alerts/MyAlert";
 import { useDisclosure } from "@chakra-ui/react";
-import { alertDefault } from "../../Data/AlertData";
+import { alertDefault } from "../../Data/alertData";
 
-export default function AddOrDeleteQuestion({add, testId}) {
+export default function AddOrDeleteQuestion({add, testId, admin}) {
     const [value, setValue]=useState('');
     const [questions, setQuestions]=useState([])
     const {isOpen, onOpen, onClose}=useDisclosure()
     const [responseStatus, setResponseStatus]=useState()
+    const formRef=useRef(null);
     const modifyQuestionText=add ?{
         title: 'Dodaj pytanie', 
-        undertitle: 'Możesz dodać pytanie do testu'}:
+        undertitle: 'Możesz dodać pytanie do pakietu'}:
         {
             title: 'Usuń pytanie', 
-            undertitle: 'Możesz usunąć pytanie z testu'};
-const fetcher=async()=>{
-        const formData=new FormData()
-        formData.append('search',value)
+            undertitle: 'Możesz usunąć pytanie z pakietu'};
+
+const fetcher=useCallback(async()=>{
+
+        const formData=new FormData(formRef.current)
+        console.error(formData)
         const request=new Request('/',{method: 'post', body: formData})
         const urlEnd= add ? 'unowned' : 'owned'
   
@@ -27,25 +30,31 @@ const fetcher=async()=>{
         if(Array.isArray(response))
         {
             setQuestions(response)
-        }}
+        }},[add,testId, value, formRef])
+
     useEffect(()=>{
         
         fetcher();
        
-    },[value])
+    },[value, fetcher])
 
     const clickHandler=(id)=>{
         const fn=async ()=>
         {
             
         
-        const urlEnd= add?
+        let urlEnd= add?
         '/attach'
         :
         '/detach'
         ;
+        if(admin)
+        {
+          urlEnd='/remove'
+        }
+        const urlStart=!admin ? '/tests/'+testId :''
         const method= add? 'post' : 'delete';
-        const response =await universalFetchSchema(null, '/tests/'+testId+'/questions/'+id+urlEnd,method);
+        const response =await universalFetchSchema(null, urlStart+'/questions/'+id+urlEnd,method);
         setResponseStatus(response)
         onOpen()
         
@@ -65,7 +74,7 @@ const fetcher=async()=>{
     const alertData= responseStatus ? alertDefault.positive : alertDefault.negative;
   return<>
     <MyAlert isOpen={isOpen} onClose={onClose} {...alertData} />
-  <ModifyQuestion {...modifyQuestionText}  value={value} onChange={(e)=>setValue(e.target.value)} searchButtonHandler={fetcher}>
+  <ModifyQuestion {...modifyQuestionText}  value={value} onChange={(e)=>setValue(e.target.value)} searchButtonHandler={fetcher} formRef={formRef}>
 
     {questionsIcons}
   </ModifyQuestion></> 

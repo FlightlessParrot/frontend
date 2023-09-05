@@ -6,11 +6,11 @@ export default function useReturnNumberWithFriends({numbersArray, currentNumber,
     //Check if number of friends is correct and add the one that we need
     if(currentNumberWithFriends.length < howManyFriends+1 && numbersArray.length>howManyFriends)
     {
-       if(currentNumber+1 >sideFriends)
+       if(currentNumber >sideFriends)
        {
         let i=currentNumber-sideFriends-1
         do{
-           currentNumberWithFriends.push(numbersArray[i]);
+           currentNumberWithFriends.unshift(numbersArray[i]);
             i--
         }while(currentNumberWithFriends.length < howManyFriends+1 )
        }else{

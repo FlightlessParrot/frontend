@@ -47,7 +47,7 @@ export default function ModifyHandbooks() {
 
     </SearchTest>
     <b className="lead">Udostępnione materiały</b>
-    <Wrap>
+    <Wrap spacing={12}>
     {testInstances}
     </Wrap>
     </Stack>

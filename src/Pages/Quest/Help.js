@@ -1,6 +1,6 @@
 import MessageToTech from "../../Components/MessageToTech";
 import QuestLayout from "../../Components/Layouts/QuestLayout";
-import { OnlyTopBar, TestUserLayout } from "../../Components/Layouts/UserLayout";
+import { OnlyTopBar} from "../../Components/Layouts/UserLayout";
 export default function Help() {
   const text = {
     title: "Uzyskaj pomoc",

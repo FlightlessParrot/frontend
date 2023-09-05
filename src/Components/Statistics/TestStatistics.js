@@ -72,9 +72,6 @@ export default function TestStatistics() {
        )
 }
 
-
-
-
  async function getTestStatistics({testId,time, setResponse}) {
   const response = await universalFetchSchema(null, `/statistics/test/${testId}?howOld=${time}`, 'get','/login', true);
  if(response)

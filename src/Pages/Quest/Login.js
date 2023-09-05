@@ -1,10 +1,10 @@
-import { Form, Link, Navigate, redirect, useActionData, useLoaderData,  } from "react-router-dom";
+import { Form, Link, Navigate,  useActionData, useLoaderData,  } from "react-router-dom";
 
 import { Checkbox, FormControl, FormErrorMessage, FormLabel, Input, useDisclosure } from "@chakra-ui/react";
 import {  useState } from "react";
 import { QuestLoginLayout } from "../../Components/Layouts/QuestLoginLayout";
 import MyAlert from "../../Components/Alerts/MyAlert";
-import { alertData } from "../../Data/AlertData";
+import { alertData } from "../../Data/alertData";
 
 export default function Login()
 {
@@ -14,7 +14,7 @@ export default function Login()
     const [wasLoginTouched, touchLogin]=useState(false)
     const [wasPasswordTouched, touchPassword]=useState(false)
     const {isOpen, onOpen, onClose}=useDisclosure()
-    const loaderData=useLoaderData();
+    useLoaderData();
     const actionData=useActionData();
    
     const errorLogin=login==='' && wasLoginTouched;
@@ -31,12 +31,12 @@ export default function Login()
 
                        <FormControl isInvalid={errorLogin}>
                         <FormLabel >e-mail</FormLabel>
-                        <Input required project='project' name='email'  value={login} onChange={(e)=>setLogin(e.currentTarget.value)} onBlur={()=>touchLogin(true)}/>
+                        <Input  autoComplete="email" required project='project' name='email'  value={login} onChange={(e)=>setLogin(e.currentTarget.value)} onBlur={()=>touchLogin(true)}/>
                         <FormErrorMessage>Podaj nazwę użytkownika.</FormErrorMessage>
                         </FormControl> 
                         <FormControl isInvalid={errorPassword}>
                         <FormLabel mt='20px'>Hasło</FormLabel>
-                        <Input required type='password' variant='outline' project='project'  name='password' onChange={(e)=>setPassword(e.currentTarget.value)} value={password} onBlur={()=>touchPassword(true)}/>
+                        <Input  autoComplete="current-password" required type='password' variant='outline' project='project'  name='password' onChange={(e)=>setPassword(e.currentTarget.value)} value={password} onBlur={()=>touchPassword(true)}/>
                         <FormErrorMessage>Podaj hasło.</FormErrorMessage>
                            
                         </FormControl> 

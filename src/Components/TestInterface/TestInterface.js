@@ -3,6 +3,8 @@ import Title from "../Title";
 import Answers from "./Answers";
 import MakeOrder from "./MakeOrder";
 import MakePairs from "./MakePairs";
+import OpenQuestion from "./OpenQuestion";
+import ShortAnswer from "./ShortAnswer";
 export default function TestInterface({
   questionPack,
   answersController,
@@ -28,6 +30,10 @@ export default function TestInterface({
         return <MakeOrder {...data} />;
       case "pairs":
         return <MakePairs {...data} />;
+        case "open":
+          return <OpenQuestion {...data}  />
+        case "short-answer":
+          return <ShortAnswer {...data} />
       default:
         <p className="text-red-500 bold">WYSTĄPIŁ BŁĄD</p>;
     }

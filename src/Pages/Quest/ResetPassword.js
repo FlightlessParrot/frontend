@@ -3,10 +3,10 @@ import { Form, useActionData, useParams, useSearchParams } from "react-router-do
 import { QuestLoginLayout } from "../../Components/Layouts/QuestLoginLayout";
 import { useState } from "react";
 import MyAlert from "../../Components/Alerts/MyAlert";
-import { alertResetPasswordData } from "../../Data/AlertData";
+import { alertResetPasswordData } from "../../Data/alertData";
 
 export default function ResetPassword() {
-    const [params, setParams]=useSearchParams();
+    const [params, ]=useSearchParams();
     const {passwordReset}=useParams()
     const actionData=useActionData()
     const {isOpen, onOpen, onClose}=useDisclosure()
@@ -25,7 +25,7 @@ export default function ResetPassword() {
                 
                     <h1 className="lead mb-8"> Podaj nowe hasło</h1>
         <Form method='post'>
-            <input tpye='password' readOnly className="hidden" value={passwordReset} name='token' />
+            <input type='password' readOnly className="hidden" value={passwordReset} name='token' />
             <input type='email' value={params.get('email')} readOnly className="hidden"  name='email' />
             <FormControl isInvalid={errorPassword}>
                 <FormLabel>Hasło</FormLabel>
