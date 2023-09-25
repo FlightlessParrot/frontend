@@ -10,12 +10,12 @@ export default function FlashcardsSetting() {
     const actionData=useActionData()
     const loaderData=useLoaderData()
     const [data, setData]=useState(null)
-    console.log(loaderData)
+  
     const categories=loaderData.categories
     const undercategories=loaderData.undercategories
     const toast=useShowToast()
     const navigate=useNavigate()
-    console.error(actionData);
+  
     useEffect(
       ()=>{ 
         if(actionData?.flashcards && actionData.flashcards.length)

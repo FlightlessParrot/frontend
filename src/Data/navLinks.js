@@ -2,8 +2,11 @@ import { ArrowForwardIcon, QuestionOutlineIcon, InfoIcon, ChevronRightIcon, Ques
 export const questLinks = [
   { id: 0, url: "/", name: "O nas" },
   { id: 1, url: "/help", name: "Pomoc" },
+  { id: 3, url: "/subscriptions", name: "Oferta" },
   { id: 2, url: "/login", name: "Zaloguj" },
-  { id: 3, url: "/register", name: "Zarejestruj", class: 'outline-link' },
+  
+  { id: 4, url: "/register", name: "Zarejestruj", class: 'outline-link' },
+  ,
 ];
 
 export const questFootLinks = [
@@ -32,6 +35,7 @@ export const questFootLinks = [
     url: "/help",
     name: "Pomoc",
   },
+ 
 ];
 
 export const questMobileLinks={
@@ -39,6 +43,7 @@ export const questMobileLinks={
     { id: 0, url: "/", name: "O nas", icon: <ArrowForwardIcon />},
     { id: 2, url: "/login", name: "Zaloguj", icon: <ArrowForwardIcon /> },
     { id: 3, url: "/register", name: "Zarejestruj", class: 'outline-link', icon: <ArrowForwardIcon /> },
+    { id: 4, url: "/subscriptions", name: "Oferta", class: 'outline-link', icon: <ArrowForwardIcon /> },
   ],
   help: [
     { id: 1, url: "/help", name: "Zadaj pytanie", icon: <QuestionOutlineIcon/> },
@@ -221,4 +226,34 @@ export  const adminLinks=[
     icon: <ArrowRightIcon/>,
     name: 'Pakiety'
   },
+  {
+    id:3,
+    url:'/user/admin/categories',
+    icon: <ArrowRightIcon/>,
+    name: 'Kategorie'
+  },
+  {
+    id:4,
+    url:'/user/admin/flashcards',
+    icon: <ArrowRightIcon/>,
+    name: 'Fiszki'
+  },
+  {
+    id: 5,
+    url:'/user/admin/users',
+    icon: <ArrowRightIcon/>,
+    name: 'Użytkownicy'
+  },
+  {
+    id: 6,
+    url:'/user/admin/mail',
+    icon: <ArrowRightIcon/>,
+    name: 'Mail'
+  },
+  {
+    id: 7,
+    url:'/user/admin/discount-codes',
+    icon: <ArrowRightIcon/>,
+    name: 'Kody rabatowe'
+  }
 ];

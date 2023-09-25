@@ -28,3 +28,16 @@ export default function UserCard({userModel, getUserIdOnClick, members}) {
     </Stack>
   )
 }
+
+export const UniversalUserCard=({red, userModel, getUserIdOnClick,buttonText })=>{
+  return (
+    <Stack  padding={4} spacing={'25px'} width={'250px'} className=" border border-white p-2 rounded bold-serif">
+        <Text fontSize={'xs'} >Imię i Nazwisko: </Text> <b>{userModel.name}</b>
+        <Divider />
+        <Text fontSize={'xs'}>Adres email: </Text> <b>{userModel.email}</b>
+        <Divider />
+        <p>id: <b>{userModel.id}</b> </p>
+        <Button colorScheme={red ? 'red' :"green"}  onClick={()=>getUserIdOnClick(userModel.id)} variant='outline'>{buttonText}</Button>
+    </Stack>
+  )
+}

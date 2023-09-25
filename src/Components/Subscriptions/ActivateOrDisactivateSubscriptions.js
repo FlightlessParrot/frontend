@@ -37,7 +37,7 @@ export default function ActivateOrDisactivateSubscriptions({activateComponent}) 
     )
 
   return <Box my={[4,8,16]}>
-    <h2 className="lead block pb-16 pt-20">Aktywuj subskrypcje</h2>
+    <h2 className="lead block pb-16 pt-20">{ !activateComponent ?'Aktywowane subskrypcje':'Aktywuj subskrypcje' }</h2>
     <Wrap spacing={'25px'} justify={['center','start']}>
         {jsx}
     </Wrap>

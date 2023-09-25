@@ -8,9 +8,8 @@ export default function useLogout() {
     useEffect(()=>{
     universalFetchSchema(null,'/logout');
     navigate('/login')
-    },[])
-    
-    console.log('kra')
+    },[navigate])
+
      
   
 }

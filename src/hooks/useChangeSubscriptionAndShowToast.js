@@ -13,7 +13,7 @@ export default function useChangeSubscriptionAndShowToast() {
             toast(
                 {
                     title: 'Udało się!',
-                    description: 'Pakiet przypisano do nowej subskrypcji.',
+                    description: 'Zmieniono ustawienia pakietu.',
                     status:'success'
                 }
             )
@@ -21,7 +21,7 @@ export default function useChangeSubscriptionAndShowToast() {
             toast(
                 {
                     title: 'Błąd!',
-                    description: 'Nie udało się zmienić subskrypcję.',
+                    description: 'Nie udało się zmienić ustawień pakietu.',
                     status:'error'
                 }
             )

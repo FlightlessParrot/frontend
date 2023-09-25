@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import { getCookie } from "../../cookies/getCookie"
 
 const role=getCookie('role')
- const mainLinks=userMainLinks.MainNav.filter((e)=>(!e.onlyTeacher && !e.onlyTeacher) || (role!=='student' && e.onlyTeacher) || (role==='admin' && e.onlyAdmin))
+ const mainLinks=userMainLinks.MainNav.filter((e)=>(!e.onlyTeacher && !e.onlyAdmin) || (role!=='student' && e.onlyTeacher) || (role==='admin' && e.onlyAdmin))
 
 export default function UserLayout(props) {
  

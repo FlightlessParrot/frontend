@@ -4,7 +4,8 @@ import CategoriesAndUndercategoriesCheckboxes from "../Forms/CategoriesAndUnderc
 import SearchBar from "../SearchBars/SearchBar";
 import { Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-export default function ModifyQuestion({title,underTitle, onChange, value, children, searchButtonHandler, formRef })
+import Pager from "../Pager/Pager";
+export default function ModifyQuestion({title,underTitle, onChange, value, children, searchButtonHandler, formRef, pageChildren })
 {
     const getAllCategoriesAndUndercategories=useGetAllCategoriesAndUndercategories();
     const [categoryObject, setCategoryObject]=useState({categories:[], undercategories: []})
@@ -26,10 +27,16 @@ export default function ModifyQuestion({title,underTitle, onChange, value, child
             <SearchBar maxWidth="600px" name='search' labelText={'Wyszukaj pytanie'} onChange={onChange} value={value} onClick={searchButtonHandler}/>
             <CategoriesAndUndercategoriesCheckboxes categories={categoryObject.categories} undercategories={categoryObject.undercategories}/>
             </Form>
+            {pageChildren ?
+            <Pager blocks={children} howManyPerPage={20} wrap />:
             <Flex wrap={'wrap'} justify={['center', 'start']} className='my-16 gap-16'>
                 {children}
-            </Flex>
+            </Flex> 
+            }
+           
             
         </div>
     )
-}
+} 
+
+

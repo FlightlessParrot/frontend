@@ -13,26 +13,26 @@ export default function WriteAnswers({type, setAnswers}) {
     let newState=state
     if(action==='next')
     {
-      if(state<4)
+      if(state.current<state.max)
       {
-        newState++
+        newState.current++
       }
     }else{
-      if(state>2)
+      if(state.current>2)
       {
-        newState--
+        newState.current--
       }
     }
-    return newState;
+    return {...newState};
   }
-  const [howMany, howManyDispatch]=useReducer(reducer,4)
-  console.log(howMany)
+  const [howMany, howManyDispatch]=useReducer(reducer,{max: 5, current:4})
+  
   return<> 
     <Center><AddRemoveButton minusFn={()=>howManyDispatch('back')} plusFn={()=>howManyDispatch('next')}/></Center>
-    {type==="one-answer" && <OneAnswer howMany={howMany} setAnswers={setAnswers} />  }
-    {type==="many-answers" && <ManyAnswers howMany={howMany} setAnswers={setAnswers} />  }
-    {type==="pairs" && <CreatePairs howMany={howMany} setAnswers={setAnswers}/>}
-    {type==='order' && <CreateOrder howMany={howMany} setAnswers={setAnswers} />}
+    {type==="one-answer" && <OneAnswer howMany={howMany.current} setAnswers={setAnswers} />  }
+    {type==="many-answers" && <ManyAnswers howMany={howMany.current} setAnswers={setAnswers} />  }
+    {type==="pairs" && <CreatePairs howMany={howMany.current} setAnswers={setAnswers}/>}
+    {type==='order' && <CreateOrder howMany={howMany.current} setAnswers={setAnswers} />}
     {type==='short-answer' && <CreateShortAnswer setAnswers={setAnswers} />}
   </>
 }

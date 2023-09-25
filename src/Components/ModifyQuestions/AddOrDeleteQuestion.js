@@ -6,7 +6,7 @@ import MyAlert from "../Alerts/MyAlert";
 import { useDisclosure } from "@chakra-ui/react";
 import { alertDefault } from "../../Data/alertData";
 
-export default function AddOrDeleteQuestion({add, testId, admin}) {
+export default function AddOrDeleteQuestion({add, testId, admin, pageChildren}) {
     const [value, setValue]=useState('');
     const [questions, setQuestions]=useState([])
     const {isOpen, onOpen, onClose}=useDisclosure()
@@ -22,7 +22,6 @@ export default function AddOrDeleteQuestion({add, testId, admin}) {
 const fetcher=useCallback(async()=>{
 
         const formData=new FormData(formRef.current)
-        console.error(formData)
         const request=new Request('/',{method: 'post', body: formData})
         const urlEnd= add ? 'unowned' : 'owned'
   
@@ -74,7 +73,7 @@ const fetcher=useCallback(async()=>{
     const alertData= responseStatus ? alertDefault.positive : alertDefault.negative;
   return<>
     <MyAlert isOpen={isOpen} onClose={onClose} {...alertData} />
-  <ModifyQuestion {...modifyQuestionText}  value={value} onChange={(e)=>setValue(e.target.value)} searchButtonHandler={fetcher} formRef={formRef}>
+  <ModifyQuestion {...modifyQuestionText}  value={value} onChange={(e)=>setValue(e.target.value)} searchButtonHandler={fetcher} formRef={formRef} pageChildren>
 
     {questionsIcons}
   </ModifyQuestion></> 

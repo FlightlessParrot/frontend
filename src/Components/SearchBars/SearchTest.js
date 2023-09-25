@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import universalFetchSchema from "../../fetch/universalFetchSchema";
 import SearchBar from "./SearchBar";
 import { Flex, Wrap } from "@chakra-ui/react";
@@ -12,30 +12,7 @@ export default function SearchTest({choseTestHandler, buttonText, color, custom=
     onChange: (e) => setSearch(e.target.value),
     maxWidth: "600px",
   };
-  console.log(tests)
-  const testsIcons = tests.map(
-    (e)=><TestIconWithButton key={e.id} 
-    TestIconDataObject=
-    {{name: e.name,
-      id: e.id,
-      path: e.path
-     }} 
-     onClick={(event)=>{event.preventDefault(); choseTestHandler(e); setSearch(''); setTests([])}} 
-     buttonText={buttonText}
-     color={color} />
-  );
-     useEffect(
-      ()=>{
-        findTests()
-      },[]
-     )
-  function clickHandler(e)
-  {
-    e.preventDefault()
-    findTests()
-
-  }
-  function findTests() {
+  const findTests=useCallback(()=> {
 
     const fn=async ()=>{const formData = new FormData();
     formData.append('search', search)
@@ -53,7 +30,30 @@ export default function SearchTest({choseTestHandler, buttonText, color, custom=
       setTests(response);
     }}
     fn()
+  },[search, custom, egzam])
+  const testsIcons = tests.map(
+    (e)=><TestIconWithButton key={e.id} 
+    TestIconDataObject=
+    {{name: e.name,
+      id: e.id,
+      path: e.path
+     }} 
+     onClick={(event)=>{event.preventDefault(); choseTestHandler(e); setSearch(''); setTests([])}} 
+     buttonText={buttonText}
+     color={color} />
+  );
+     useEffect(
+      ()=>{
+        findTests()
+      },[findTests]
+     )
+  function clickHandler(e)
+  {
+    e.preventDefault()
+    findTests()
+
   }
+
 
 
   return (

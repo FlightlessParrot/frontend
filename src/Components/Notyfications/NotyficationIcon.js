@@ -1,11 +1,14 @@
 import { EmailIcon } from "@chakra-ui/icons";
 import { Box, IconButton } from "@chakra-ui/react";
 
-export default function NotyficationIcon({onClick}) {
+export default function NotyficationIcon({onClick, notyficationsLength}) {
 
 
   return (
-    <Box className="fixed top-20    right-2 md:right-20 z-50">
+    <Box className="fixed top-20    right-2 md:right-20 z-40">
+      <div className="z-50 absolute top-[-5px] right-[-5px] w-6 h-6 rounded-full bg-green-500 border-mediterrenian border flex justify-center items-center">
+      {notyficationsLength}
+      </div>
     <IconButton
     className=""
     onClick={onClick}

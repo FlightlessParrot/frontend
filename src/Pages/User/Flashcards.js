@@ -1,4 +1,4 @@
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import {  useNavigate, useOutletContext } from "react-router-dom";
 import Flashcard from "../../Components/Flashcard/Flashcard";
 import { Center, Box } from "@chakra-ui/react";
 import { useEffect, useReducer} from "react";
@@ -12,7 +12,7 @@ export default function Flashcards() {
             !outletContext?.flashcards && navigate('/user/test')
         },[outletContext,navigate]
     )
-    console.log(outletContext)
+
     const [state, dispatch]=useReducer(reducer,{currentElement: 0,navigate: navigate, flashcards: outletContext.flashcards.length })
     const jsx=outletContext.flashcards.map((e)=><Flashcard key={e.id} {...e}/>) 
 
@@ -20,7 +20,7 @@ export default function Flashcards() {
     {
         if(state.currentElement>=state.flashcards-1)
         {
-            console.log('NAVIGATE ME')
+            
             state.navigate('/user/tests');
             return {...state}
         }else{

@@ -3,18 +3,18 @@ import PageSwitcher from "../../../Components/PageSwitcher";
 
 import { Outlet } from "react-router-dom";
 export default function TestsSettings() {
-    const PageSwitcherLinks=[
+    const pageSwitcherLinks=[
         {
             url: '/user/tests/settings/new',
-            name: 'Stwórz test'
+            name: 'Stwórz pakiet'
         },{
             url: '/user/tests/settings/delete',
-            name: 'Usuń test'
+            name: 'Usuń pakiet'
         }
     ]
   return (
   <>
-    <PageSwitcher links={PageSwitcherLinks} />
+    <PageSwitcher links={pageSwitcherLinks} />
     <Box padding={[2,4,4,8,16]}>
     <Outlet />
     </Box></>

@@ -25,7 +25,7 @@ export default function CreateQuestion() {
         index: 0,
         count: steps.length,
       })
-      const [categoryState, categoryDispatch]=useCategoriesReducer(true)
+      const [categoryState, categoryDispatch]=useCategoriesReducer()
       const [type, setType]=useState('one-answer')
       const [answers, setAnswers]=useState(null)
       const [explanation, setExplanation]=useState('')
@@ -40,8 +40,8 @@ export default function CreateQuestion() {
           
           if(send)
           {
-            const questionData={question: question, type: type, category_id: categoryState['categories'].length ? categoryState['categories'][0]: null,
-            undercategory_id: categoryState['undercategories'].length ? categoryState['undercategories'][0] : null, explanation: explanation === '' ? null: explanation
+            const questionData={question: question, type: type, categories: categoryState['categories'],
+            undercategories: categoryState['undercategories'], explanation: explanation === '' ? null: explanation
             }
 
         
@@ -69,6 +69,7 @@ export default function CreateQuestion() {
    
   return (
     <Box key={key}>
+      <h2 className="lead">Dodaj pytanie do pakietu</h2>
     <MyStepper activeStep={activeStep} steps={steps}/>
     <Box padding={[4,8]}>
       {activeStep===0 && <ChooseType categoryState={categoryState} categoryDispatch={categoryDispatch} typeValue={type} onTypeChange={e=>setType(e.target.value)}  />}

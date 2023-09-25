@@ -1,5 +1,6 @@
 import { useReducer } from "react"
 export default function usePagerController(blocks, howManyPerPage) {
+   
     const pages=Math.ceil(blocks.length/howManyPerPage)
     const initValue={
         currentPage: 1,
@@ -13,9 +14,18 @@ export default function usePagerController(blocks, howManyPerPage) {
     function reducer(state, action)
     {
         const newState=state
+        if(action?.reset)
+        {
+            return {
+                currentPage: 1,
+                howManyPages:Math.ceil(action.blocks.length/action.howManyPerPage),
+                allElements: action.blocks,
+                elements: blocks.filter((e,i)=>Math.ceil((i+1)/howManyPerPage)===1)
+            }
+        }
         switch(action)
         {
-
+        
             case 'next':
             if(state.currentPage<state.howManyPages)
             {

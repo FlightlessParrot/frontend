@@ -16,7 +16,7 @@ import { alertRegisterData } from "../../Data/alertData";
 
 import UserContactCields from "../../Components/Forms/UserContactFields";
 
-export const Register = () => {
+ const Register = () => {
   const actionData = useActionData();
 
   const [agree, setAgreement] = useState(false);
@@ -91,3 +91,4 @@ export const Register = () => {
     </QuestLoginLayout>
   );
 };
+export {Register as default}

@@ -16,7 +16,7 @@ export default function CreateTestInstance({title}) {
   const actionData=useActionData()
   const getCategories=useGetCategoriesAndUndercategories({testId, setResponse})
   const {isOpen, onOpen, onClose}=useDisclosure();
-  console.log(actionData)
+ 
 
   useEffect(
     ()=>{

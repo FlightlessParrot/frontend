@@ -3,8 +3,9 @@ import { Flex} from "@chakra-ui/react"
 import usePagerController from "../../hooks/usePagerController"
 import useReturnNumberWithFriends from "../../hooks/useReturnNumberWithFriends"
 import PagerLowBar from "./PagerLowBar"
+import { useEffect } from "react"
 
-export default function Pager({blocks, howManyPerPage}) {
+export default function Pager({blocks, howManyPerPage, wrap=false}) {
 
    const [state, dispatch]=usePagerController(blocks, howManyPerPage)
    const getPagesArray=()=>{
@@ -17,14 +18,23 @@ export default function Pager({blocks, howManyPerPage}) {
     }while(i<=state.howManyPages)
     return array
    }
+   useEffect(
+    ()=>{
+      dispatch({
+        reset: true,
+        blocks: blocks,
+        howManyPerPage:howManyPerPage
+      })
+    },[blocks]
+   )
    const pagesArray=getPagesArray()
 
    const lowBarNumbers=useReturnNumberWithFriends({numbersArray: pagesArray, currentNumber: state.currentPage, howManyFriends:6 })
 
-
+   console.log(state)
   return (
     <Flex align={'center'} direction={'column'} pb={[2,4,8,16]} >
-        <Flex align={'center'} direction={'column'} p={[2,4,8,16]} gap={10}>
+        <Flex align={wrap ? 'stretch':'center' } direction={wrap ? 'row': 'column' } wrap={wrap? 'wrap': 'nowrap'}  p={[2,4,8,16]} gap={10}>
           {state.elements}
         </Flex>
       <PagerLowBar pagesNumbersArray={lowBarNumbers} currentNumber={state.currentPage} dispatch={dispatch} />

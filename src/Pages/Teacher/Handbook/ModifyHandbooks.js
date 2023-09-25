@@ -17,7 +17,15 @@ export default function ModifyHandbooks() {
         ()=>{
             if(test)
             {
-                addTestToTeam({teamId: loaderData.teamId,test:test, setTest:setTest, setResponse: setResponse,revalidator: revalidator })
+                if(loaderData.tests.filter(e=>e.id===test.id).length)
+                {
+                    toast({title: 'Uwaga',
+                    description: 'Test został już udostępniony',
+                    status: 'warning'})
+                }else{
+                    addTestToTeam({teamId: loaderData.teamId,test:test, setTest:setTest, setResponse: setResponse,revalidator: revalidator })
+                }
+                
             }
         },[test]
     )
@@ -38,7 +46,7 @@ export default function ModifyHandbooks() {
             }
         },[response]
     )
-    const testInstances=loaderData.tests.map((e)=><TestIconWithButton TestIconDataObject={e} buttonText={'Usuń'} color='red' onClick={()=>setDeleteTest(e)}/>)
+    const testInstances=loaderData.tests.map((e)=><TestIconWithButton key={e.id} TestIconDataObject={e} buttonText={'Usuń'} color='red' onClick={()=>setDeleteTest(e)}/>)
   return (
 
     <Stack spacing={10} marginY={20}> 

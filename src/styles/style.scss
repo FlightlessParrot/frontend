@@ -5,10 +5,11 @@
 @forward 'forms';
 @forward './switcherLinks.scss';
 @forward './bouncer.scss';
+@forward './loading-animation.scss';
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
+@import 'react-quill/dist/quill.snow.css';
 body,
 html {
     padding: 0px;
@@ -51,4 +52,18 @@ h1,
 
 .lead {
     @extend %lead;
+}
+
+.perspective-one{
+    perspective: 1000px;
+}
+
+
+.card{
+    backface-visibility: hidden;
+}
+
+.backface{
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
 }
