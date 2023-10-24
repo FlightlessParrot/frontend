@@ -14,11 +14,13 @@ export default function EditSubscription() {
   const [lowestPrice, setLowestPrice]=useState(0);
   const [newPrice, setNewPrice] = useState(0);
   const [check, setCheck] = useState(false);
+  const [desc, setDesc]=useState('')
   const toast=useShowToast()
   useEffect(() => {
     setPrice(loaderData.subscription.price);
     setName(loaderData.subscription.name);
     setDate(loaderData.subscription.license_duration);
+    setDesc(loaderData.subscription.description)
   }, [setDate, setName, setPrice, loaderData.subscription]);
   useEffect(
     ()=>{
@@ -79,6 +81,8 @@ export default function EditSubscription() {
           setDiscountCheckbox={setCheck}
           lowestPrice={lowestPrice}
           setLowestPrice={setLowestPrice}
+          setDesc={setDesc}
+          desc={desc}
         />
         <button className="action-button float-right">
           Edytuj subskrypcję

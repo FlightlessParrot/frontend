@@ -25,7 +25,7 @@ export default function AdminSubscriptions() {
         toast(
           {
             title:"Dodano subsckrypcje",
-            description: "Dodano subskrypcję.  Dodna subskrypcja jest obecnie niekatywna.",
+            description: "Dodano subskrypcję.  Dodana subskrypcja jest obecnie nieaktywna.",
             status: 'success'
           }
         )

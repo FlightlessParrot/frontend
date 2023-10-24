@@ -83,7 +83,7 @@ export default function ManageTests() {
             description: "Udało się usunąć pakiet",
             status: "success",
           });
-        }else{
+        } else {
           toast({
             title: "Błąd",
             description: "Nie udało się usunąć pakietu",
@@ -93,7 +93,7 @@ export default function ManageTests() {
       };
       remover();
       setRemoveTestId(null);
-      setResponse([])
+      setResponse([]);
     }
   }, [removeTestId, toast.setRemoveTestId, setTestId]);
   useEffect(() => {
@@ -187,7 +187,7 @@ export default function ManageTests() {
             </Flex>
           </Stack>
         </Form>
-        <Stack marginY={[6,8,16]} spacing={'60px'}>
+        <Stack marginY={[6, 8, 16]} spacing={"60px"}>
           <h2 className="lead block my-8">Usuń pakiet</h2>
           <SearchBar
             labelText={"Usuń pakiet"}
@@ -197,7 +197,7 @@ export default function ManageTests() {
           />
           <Wrap spacing={"25px"}>{jsxRemoveTests}</Wrap>
         </Stack>
-        <Box >
+        <Box>
           <h2 className="lead block my-12">Modyfikuj istniejący pakiet</h2>
           <Select
             placeholder="Wybierz pakiet"
@@ -207,9 +207,8 @@ export default function ManageTests() {
             {tests}
           </Select>
         </Box>
-            
+
         <Outlet />
-        
       </Stack>
     </Box>
   );

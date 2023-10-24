@@ -1,21 +1,18 @@
 import { Box, FormControl, FormLabel, Select, Stack, Wrap } from "@chakra-ui/react";
 import Title from "../../../Components/Title";
-import { useLoaderData, useNavigate, } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate, } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import SearchBar from "../../../Components/SearchBars/SearchBar";
 import getCSRFToken from "../../../cookies/getCSRFToken";
 import FlashcardCard from "../../../Components/Cards/FlashcardCard";
-
-import universalFetchSchema from "../../../fetch/universalFetchSchema";
-import useShowToast from "../../../hooks/useShowToast"
 import Pager from "../../../Components/Pager/Pager";
-export default function DeleteFlashcards() {
+export default function ChooseFlashcards() {
   const loaderData = useLoaderData();
   const [subscription, setSubscription]=useState('')
   const [search, setSearch]=useState('')
   const [flashcards, setFlashcards]=useState([])
-  const [removeId, setRemoveId]=useState(null)
-  const toast=useShowToast()
+
+
   const navigate=useNavigate()
   const options = loaderData.subscriptions.map((e) => (
     <option key={e.id} value={e.id}>
@@ -23,7 +20,7 @@ export default function DeleteFlashcards() {
     </option>
     
   ));
-  const flashcardsElements=flashcards.map(e=><FlashcardCard key={e.id} {...e} onClick={event=>setRemoveId(e.id)} />)
+  const flashcardsElements=flashcards.map(e=><FlashcardCard key={e.id} {...e} onClick={event=>navigate('./'+e.id)} />)
   useEffect(
     ()=>{
         if(loaderData.subscriptions[0]?.id)
@@ -49,37 +46,7 @@ export default function DeleteFlashcards() {
             }
 
   },[subscription,setFlashcards, search])
-  useEffect(
-    ()=>{
-      const deleteFn=async ()=>{
-        console.log(removeId )
-        const url='/flashcards/'+removeId+'/delete'
-        const response =await universalFetchSchema(null,url,'delete');
-        if(response)
-        {
-          toast({title:'Udało się',
-          description: 'Element został usunięty',
-          status: 'success'
 
-          })
-        }else{
-          toast({title:'Błąd',
-          description: 'Element nie został usunięty',
-          status: 'error'
-
-          })
-        }
-        
-         setRemoveId(null)
-       
-      }
-      if(removeId)
-      {
-        deleteFn()
-        
-      }
-    },[removeId, setRemoveId, removeId,toast, ]
-  )
     useEffect(
         ()=>{
             getFlashcards()
@@ -87,7 +54,7 @@ export default function DeleteFlashcards() {
     )
   return (
     <div>
-      <Title title="Usuń fiszkę" />
+      <Title title="Edytuj lub usuń fiszkę" />
       <Box padding={[2, 4, 4, 8, 16]}>
         <Stack spacing={20}>
         <FormControl>
@@ -111,6 +78,7 @@ export default function DeleteFlashcards() {
      </Stack>
 
       </Box>
+      <Outlet />
     </div>
   );
 }

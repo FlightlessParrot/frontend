@@ -17,6 +17,15 @@ export default function useControlOrderInput(number) {
             return [...initialState]
         }
         const newState=state
+        if(action?.edit)
+        {
+            
+            action.edit.forEach(element => {
+                newState[Number(element.order)]=element.text
+            });
+            return {...newState}
+        }
+        
         const element=action.target
         const name=element.name
         const value=element.value

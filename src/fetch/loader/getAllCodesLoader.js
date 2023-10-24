@@ -2,5 +2,6 @@ import universalFetchSchema from "../universalFetchSchema"
 
 export default async function getAllCodesLoader() {
     const response= await universalFetchSchema(null,'/discount-codes','get','/',true)
-  return response
+    const subscriptions =await universalFetchSchema(null,'/subscriptions/all','get', '/login',true)
+  return {...response, ...subscriptions}
 }

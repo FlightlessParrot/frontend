@@ -4,9 +4,10 @@ import { useEffect } from "react"
 
 import OrderInput from "./OrderInput"
 import useControlOrderInput from "../../../hooks/WriteAnswersHooks/useControlOrderInput"
+import { useLoaderData } from "react-router-dom"
 
 export default function CreateOrder({howMany, setAnswers}) {
-  
+    const loaderData=useLoaderData()
     const answers=[]
     const [order,dispatchOrder]=useControlOrderInput(howMany)
     useEffect(
@@ -18,19 +19,25 @@ export default function CreateOrder({howMany, setAnswers}) {
             
             setAnswers({
                 type: 'order',
-                answers:order})
+                answers:order
+            })
         },[order, setAnswers]
     )
+    useEffect(
+        ()=>{
+            if(loaderData?.question)
+            {
+                dispatchOrder({edit: loaderData.question.squares})
+            }
+        },[loaderData, dispatchOrder])
     for(let i=0;i<order.length;i++)
     {
         answers.push(<OrderInput key={i} value={order[i]} onChange={dispatchOrder} name={'order-'+i} order={i+1}/>)
     }
   return (
     <Box>
-        <i className="block my-12">Utwórz odpowiedzi i ich kolejność. Liczba przed odpowiedzią oznacza kolejność elementu.</i>
-       
-    <Stack spacing={'30px'}>
-        
+        <i className="block my-12">Utwórz odpowiedzi i ich kolejność. Liczba przed odpowiedzią oznacza kolejność elementu.</i> 
+    <Stack spacing={'30px'}>   
         {answers}
     </Stack>
 

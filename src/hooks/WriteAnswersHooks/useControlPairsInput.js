@@ -17,6 +17,20 @@ export default function useControlPairsInput(number) {
             const initialState=lazyCreator(action.reset)
             return [...initialState]
         }
+        if(action?.edit)
+        {
+            const editState=[]
+            action.edit.forEach(e => {
+                if(state.filter(s=>s[0]===e.text || s[1]===e.text).length===0)
+                {
+                    const brother=action.edit.filter(secE=>secE.id===e.brother)[0];
+                    editState.push(e.text,brother.text)
+                }
+
+            });
+
+            return {...editState}
+        }
         const newState=state
         const element=action.target
         const name=element.name

@@ -8,8 +8,8 @@ export default function Flashcards() {
             url: '/user/admin/flashcards/new',
             name: 'Stwórz fiszkę'
         },{
-            url: '/user/admin/flashcards/delete',
-            name: 'Usuń fiszkę'
+            url: '/user/admin/flashcards/edit',
+            name: 'Edytuj fiszkę'
         }]
   return (
     <div>

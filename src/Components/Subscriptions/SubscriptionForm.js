@@ -1,7 +1,8 @@
 import { Checkbox, FormControl, FormErrorMessage,FormLabel, Input,  NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Stack } from "@chakra-ui/react";
-import { useState } from "react";
 
-export default function SubscriptionForm({setName, name, setPrice, price, date, setDate, discountPrice, setDiscountPrice, discountCheckbox, setDiscountCheckbox, lowestPrice, setLowestPrice}) {
+import  Quill  from "react-quill";
+
+export default function SubscriptionForm({setName, name, setPrice, price, date, setDate, discountPrice, setDiscountPrice, discountCheckbox, setDiscountCheckbox, lowestPrice, setLowestPrice, desc, setDesc}) {
 
   return (
     
@@ -11,6 +12,14 @@ export default function SubscriptionForm({setName, name, setPrice, price, date, 
             <Input onChange={e=>setName(e.target.value)} value={name} name='name' required maxLength={250} />
             <FormErrorMessage>Musisz podać nazwę.</FormErrorMessage>
         </FormControl>
+        <FormControl >
+            <FormLabel>Opis subskrypcji</FormLabel>
+            <Quill onChange={setDesc} value={desc} />
+            <textarea  value={desc} name='description' hidden readOnly />
+           
+        </FormControl>
+
+
         <FormControl>
             <FormLabel>Cena w polskich złotych</FormLabel>
 

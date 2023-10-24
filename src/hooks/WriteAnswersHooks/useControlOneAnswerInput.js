@@ -21,6 +21,21 @@ export default function useControlOneAnswerInput(number) {
             const initialState=lazyCreator(action.reset)
             return {...initialState}
         }
+        if(action?.edit)
+        {
+            const savedState={}
+            let i=1;
+            action.edit.foreach((e)=>
+            {
+                state['answer-'+i]={
+                    answer: e.answer,
+                    correct: e.correct
+                }
+                i++
+            })
+       
+            return {...savedState}
+        }
         const newState=state
      
         if(action?.target?.tagName==='INPUT')

@@ -18,8 +18,8 @@ export default function FlashcardCard({ question, answer, path, onClick }) {
       </div>
 
       <div className=" flex justify-center items-center">
-        <Button colorScheme="red" onClick={onClick}>
-          USUŃ
+        <Button colorScheme="teal" onClick={onClick}>
+          Edytuj
         </Button>
       </div>
     </div>

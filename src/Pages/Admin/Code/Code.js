@@ -1,17 +1,21 @@
-import { Input, Box, Flex, FormControl, FormLabel, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Tag, TagCloseButton, TagLabel, Wrap, Stack } from "@chakra-ui/react";
+import { Input, Box, Flex, FormControl, FormLabel, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Tag, TagCloseButton, TagLabel, Wrap, Stack, Select, Checkbox } from "@chakra-ui/react";
 import Title from "../../../Components/Title";
 import DataLayout from "../../../Components/Data/DataLayout";
 import { Form, useActionData, useLoaderData, useRevalidator } from "react-router-dom";
 import universalFetchSchema from "../../../fetch/universalFetchSchema";
 import useShowToast from "../../../hooks/useShowToast";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 export default function Code() {
     const loaderData=useLoaderData()
+
+    const checkboxes= loaderData.subscriptions.map(
+        e=><Checkbox name='subscriptions[]' value={e.id} key={e.id}>{e.name}</Checkbox>
+    )
     const actionData=useActionData()
     const toast=useShowToast()
     const revalidator=useRevalidator()
-    const revalidate=useCallback(revalidator.revalidate,[])
+    const ref=useRef(null)
     useEffect(
         ()=>{
             if(actionData?.error)
@@ -27,10 +31,10 @@ export default function Code() {
                     title: 'Stworzono kod rabatowy',
                     status:'success'
                 })
-                revalidate()
+                ref.current.reset()
             }
            
-        },[actionData,toast, revalidate]
+        },[actionData,toast, ref]
     )
     const deleteCode=async (codeId)=>{
         const response =await universalFetchSchema(null,`/discount-code/${codeId}/delete`,'delete')
@@ -57,8 +61,14 @@ export default function Code() {
         <Title title='Stwórz kod' />
         <Box padding={[2,4,4,8,16]}>
             <DataLayout title={'Stwórz kod rabatowy'} >
-                <Form method='post'>
+                <Form method='post' ref={ref}>
                     <Stack gap='30px'>
+                        <FormControl marginY={[10,12]}>
+                        <b className="block my-6 ">Wybierz subskrypcje, których kod ma dotyczyć</b>
+                        <Wrap flexWrap={'wrap'} spacing={6}>
+                            {checkboxes}
+                        </Wrap>
+                        </FormControl>
                     <FormControl>
                     <FormLabel>Podaj kod</FormLabel>
                     <Input name='code' required maxLength={250} />
@@ -77,7 +87,7 @@ export default function Code() {
                     </Stack>
                 </Form>
             </DataLayout>
-            <DataLayout title={'Usuń kodrabatowy'}>
+            <DataLayout title={'Usuń kod rabatowy'}>
                 <Wrap spacing={'30px'}>
                 {tags}
                 </Wrap>

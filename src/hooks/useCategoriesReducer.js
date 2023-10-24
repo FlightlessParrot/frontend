@@ -10,6 +10,11 @@ export default function useCategoriesReducer(onlyOne, singular) {
       {
         return initValue
       }
+      if(action?.newState)
+      {
+        
+        return {...action.newState}
+      }
         const newState=state
        const key=action.target.name.slice(0,-2)
        const secKey=key==='categories'? 'undercategories':'categories';

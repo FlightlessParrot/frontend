@@ -1,10 +1,11 @@
 import { Stack, Box } from "@chakra-ui/react"
-import { useEffect } from "react"
+import { useEffect, loaderData } from "react"
 import useControlManyAnswersInput from "../../../hooks/WriteAnswersHooks/useControlManyAnswersInput"
 import ManyAnswersInput from "./ManyAnswersInput"
+import { useLoaderData } from "react-router-dom"
 
 export default function ManyAnswers({howMany, setAnswers}) {
-
+    const loaderData=useLoaderData()
     const answers=[]
     const [givenAnswers, dispatchGivenAnswers]=useControlManyAnswersInput(howMany)
     useEffect(
@@ -23,6 +24,13 @@ export default function ManyAnswers({howMany, setAnswers}) {
     {
         answers.push(<ManyAnswersInput key={i} name={'answer-'+ i} onChange={dispatchGivenAnswers} value={givenAnswers['answer-'+i].answer} isChecked={givenAnswers['answer-'+i].correct}/>)
     }
+    useEffect(
+        ()=>{
+            if(loaderData?.question)
+            {
+                dispatchGivenAnswers({edit: loaderData.question.answers})
+            }
+        },[loaderData, dispatchGivenAnswers])
   return (
     <Box>
         <i className="block my-12">Napisz odpowiedzi i zaznacz poprawne odpowiedzi.</i>

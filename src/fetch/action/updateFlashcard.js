@@ -1,22 +1,22 @@
 import getCSRFToken from "../../cookies/getCSRFToken";
 
 
-export default async function createFlashcard({params, request}) {
+export default async function updateFlashcard({params, request}) {
 
     const formData=await request.formData();
     const image=formData.get('image')
-   
-    formData.delete('image')
-   
-    const imageController=image!==null
 
+    formData.delete('image')
+
+    const imageController=image!==null
+    
     const newFormData=new FormData()
     newFormData.append('image', image)
     newFormData.append('_method', 'put')
     const token = await getCSRFToken();
     
     const response= await fetch(
-        process.env.REACT_APP_BACKEND+`/flashcard/new`,{
+        process.env.REACT_APP_BACKEND+`/flashcard/${params.flashcard}/update`,{
             method: 'post',
             credentials:'include',
             headers: {

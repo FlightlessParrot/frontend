@@ -10,6 +10,7 @@ export default function CreateSubscription() {
   const [newPrice, setNewPrice] = useState(100);
   const [check, setCheck] = useState(false);
   const [lowestPrice, setLowestPrice]=useState(0);
+  const [desc, setDesc]=useState('')
   return (
     <Form method="post">
       <SubscriptionForm
@@ -25,6 +26,8 @@ export default function CreateSubscription() {
         check={check}
         lowestPrice={lowestPrice}
         setLowestPrice={setLowestPrice}
+        setDesc={setDesc}
+        desc={desc}
       />
       <button className="action-button float-right">Stwórz subskrypcję</button>
     </Form>
