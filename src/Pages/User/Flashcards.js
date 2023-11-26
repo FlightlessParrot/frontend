@@ -18,7 +18,16 @@ export default function Flashcards() {
 
     function reducer(state, action)
     {
-        if(state.currentElement>=state.flashcards-1)
+        if(action==='prev')
+        {
+            if(state.currentElement>0)
+        {
+            return {...state,currentElement: state.currentElement-1}
+        }
+
+        }
+        else{
+            if(state.currentElement>=state.flashcards-1)
         {
             
             state.navigate('/user/tests');
@@ -26,12 +35,15 @@ export default function Flashcards() {
         }else{
             return {...state,currentElement: state.currentElement+1}
         }
+        }
+        return {...state}
     }
   return (
     <Box padding={[2,4,4,8,16]}>
         <Center py={[5,10,20,30, 75]} className="perspective">
             {jsx[state.currentElement]}
         </Center>
+        <button onClick={dispatch('prev')} className="action-button p-4 float-left"></button>
         <button onClick={dispatch} className="action-button p-4 float-right">Dalej</button>  
     </Box>
   )

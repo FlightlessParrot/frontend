@@ -20,16 +20,22 @@ export default function useControlPairsInput(number) {
         if(action?.edit)
         {
             const editState=[]
+            const currentElements=[]
             action.edit.forEach(e => {
-                if(state.filter(s=>s[0]===e.text || s[1]===e.text).length===0)
+                currentElements.push(e)
+                if(currentElements.filter((s)=>s.brother===e.id).length>0)
                 {
-                    const brother=action.edit.filter(secE=>secE.id===e.brother)[0];
-                    editState.push(e.text,brother.text)
+                    const brotherIndex=currentElements.findIndex(b=>b.brother===e.id);
+                    const index = editState.findIndex(element=>element[0]===currentElements[brotherIndex].text);
+                    editState[index].push(e.text)
+                    
+                }else{
+                    editState.push([e.text])
                 }
 
             });
-
-            return {...editState}
+            console.log(editState)
+            return [...editState]
         }
         const newState=state
         const element=action.target

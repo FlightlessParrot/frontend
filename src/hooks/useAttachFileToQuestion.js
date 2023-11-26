@@ -5,7 +5,6 @@ export default function useAttachFileToQuestion() {
     
   const sendFile =useCallback( async (fileRef, questionId) => {
    const token = await getCSRFToken();
-   console.log(fileRef)
     if (fileRef.current.files.length) {
       const formData = new FormData();
       formData.append('image',fileRef.current.files[0])

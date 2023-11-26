@@ -20,12 +20,12 @@ export default function User() {
           getNotyfications()
           const interval=setInterval(()=>{revalidate();
       getNotyfications() 
-      },10000000000000)  
+      },60000)  
       
       return ()=>clearInterval(interval)
       },[revalidate]
     )
-  const showNotyfications=navigation.pathname.split('/')[2]!=='test' &&notyfications.length>0
+  const showNotyfications=navigation.pathname.split('/')[2]!=='test' && navigation.pathname !=='/user/tests/flashcards/start' &&notyfications.length>0
 
   return (<div>
    { navigation.pathname=='/user' && <Navigate to='/user/tests' />}

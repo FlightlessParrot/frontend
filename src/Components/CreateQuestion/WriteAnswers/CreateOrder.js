@@ -6,7 +6,7 @@ import OrderInput from "./OrderInput"
 import useControlOrderInput from "../../../hooks/WriteAnswersHooks/useControlOrderInput"
 import { useLoaderData } from "react-router-dom"
 
-export default function CreateOrder({howMany, setAnswers}) {
+export default function CreateOrder({howMany, setAnswers, controler, setControler}) {
     const loaderData=useLoaderData()
     const answers=[]
     const [order,dispatchOrder]=useControlOrderInput(howMany)
@@ -25,11 +25,12 @@ export default function CreateOrder({howMany, setAnswers}) {
     )
     useEffect(
         ()=>{
-            if(loaderData?.question)
+            if(loaderData?.question && controler.order)
             {
+                setControler(s=>({...s, order: false}))
                 dispatchOrder({edit: loaderData.question.squares})
             }
-        },[loaderData, dispatchOrder])
+        },[loaderData, dispatchOrder, controler, setControler])
     for(let i=0;i<order.length;i++)
     {
         answers.push(<OrderInput key={i} value={order[i]} onChange={dispatchOrder} name={'order-'+i} order={i+1}/>)

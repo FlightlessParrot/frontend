@@ -6,7 +6,7 @@ import MyAlert from "../Alerts/MyAlert";
 import { useDisclosure } from "@chakra-ui/react";
 import { alertDefault } from "../../Data/alertData";
 
-export default function AddOrDeleteQuestion({add, testId, admin, pageChildren}) {
+export default function AddOrDeleteQuestion({add, testId, admin}) {
     const [value, setValue]=useState('');
     const [questions, setQuestions]=useState([])
     const {isOpen, onOpen, onClose}=useDisclosure()
@@ -29,7 +29,7 @@ const fetcher=useCallback(async()=>{
         if(Array.isArray(response))
         {
             setQuestions(response)
-        }},[add,testId, value, formRef])
+        }},[add,testId, formRef])
 
     useEffect(()=>{
         

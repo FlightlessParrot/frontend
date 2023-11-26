@@ -12,13 +12,15 @@ export default function useCategoriesReducer(onlyOne, singular) {
       }
       if(action?.newState)
       {
-        
-        return {...action.newState}
+        const categories=action.newState.categories.map(e=>e.id.toString())
+        const undercategories=action.newState.undercategories.map(e=>e.id.toString())
+        return {categories: categories, undercategories: undercategories}
       }
         const newState=state
        const key=action.target.name.slice(0,-2)
        const secKey=key==='categories'? 'undercategories':'categories';
        const value=action.target.value
+
        if(state[key].includes(value))
        {
         onlyOne? 

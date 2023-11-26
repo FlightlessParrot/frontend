@@ -2,12 +2,13 @@ import { Box, useSteps, Flex, Button, useBoolean } from "@chakra-ui/react";
 import MyStepper from "../Stepper/MySteppper";
 import useCategoriesReducer from "../../hooks/useCategoriesReducer";
 import ChooseType from "./ChooseType";
-import { useEffect, useRef, useState, useReducer } from "react";
+import { useEffect, useRef, useState } from "react";
 import WriteQuestion from "./WriteQuestion.js";
 import WriteAnswers from "./WriteAnswers/WriteAnswers";
 import LastPage from "./LastPage";
 import useCreateQuestion from "../../hooks/useCreateQuestion";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+
 
 export default function CreateQuestion() {
   const steps = [
@@ -17,6 +18,7 @@ export default function CreateQuestion() {
   ];
   const { testId } = useParams();
   const loaderData=useLoaderData()
+  const navigate=useNavigate();
   const sendData = useCreateQuestion();
   const { activeStep, setActiveStep, goToNext, goToPrevious } = useSteps({
     index: 0,
@@ -30,8 +32,10 @@ export default function CreateQuestion() {
   const [send, setSend] = useBoolean();
   const [isSuccessfull, setIsSuccesfull] = useState(false);
   const [key, setKey] = useState(0);
+  const [controler, setControler]=useState({writeAnswers:true, oneAnswer:true, manyAnswers:true, order:true, pairs:true})
   const fileRef = useRef(null);
 
+  console.log(loaderData)
  
   useEffect(
     ()=>{
@@ -41,8 +45,8 @@ export default function CreateQuestion() {
         setQuestion(loaderData.question.question)
         setExplanation(loaderData.question.explanation)
         categoryDispatch({newState:{
-          categories: [loaderData.question.categories],
-          undercategories: [loaderData.question.undercategories]
+          categories:  loaderData.question.categories.length ? loaderData.question.categories : [],
+          undercategories: loaderData.question.undercategories.length ? loaderData.question.undercategories : []
       }
       })
 
@@ -51,17 +55,20 @@ export default function CreateQuestion() {
   )
   useEffect(() => {
     if (send) {
+      const method =loaderData?.question ? 'put': 'post'
       const questionData = {
         question: question,
         type: type,
         categories: categoryState["categories"],
         undercategories: categoryState["undercategories"],
         explanation: explanation === "" ? null : explanation,
+        _method: method
       };
-
-      sendData(testId, questionData, answers, setIsSuccesfull, fileRef);
-
+     
+      
+      sendData(testId, questionData, answers, setIsSuccesfull, fileRef, method, loaderData.question.id);
       setSend.off();
+      loaderData?.question && navigate('/user/admin/tests');
     }
   }, [
     send,
@@ -75,6 +82,7 @@ export default function CreateQuestion() {
     type,
     fileRef,
     setIsSuccesfull,
+    loaderData
   ]);
 
   useEffect(() => {
@@ -113,12 +121,11 @@ export default function CreateQuestion() {
           <WriteQuestion
             value={question}
             fileRef={fileRef}
-        
             onChange={(e) => setQuestion(e.target.value)}
           />
         </div>
         {activeStep === 2 && (
-          <WriteAnswers type={type} setAnswers={setAnswers}  />
+          <WriteAnswers  type={type} setAnswers={setAnswers} controler={controler} setControler={setControler} />
         )}
         {activeStep === 3 && (
           <LastPage

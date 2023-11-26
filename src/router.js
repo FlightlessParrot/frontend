@@ -34,7 +34,7 @@ import teamsLoader from "./fetch/loader/teamsLoader";
 import teamLoader from "./fetch/loader/teamLoader";
 
 import modifyHandbookLoader from "./fetch/loader/modifyHandbookLoader";
-
+import modifyQuestionLoader from "./fetch/loader/modifyQuestionLoader";
 import testReviewLoader from "./fetch/loader/testReviewLoader";
 
 import createEgzamAction from "./fetch/action/createEgzamAction";
@@ -179,6 +179,7 @@ const AdminUsers = lazy(() => import("./Pages/Admin/Users/AdminUsers"));
 const ChooseFlashcards = lazy(() =>
   import("./Pages/Admin/Flashcards/ChooseFlashcards")
 );
+const ModifyQuestion=lazy(()=>import("./Pages/Admin/Tests/ModifyQuestion"));
 
 const router = createBrowserRouter([
   {
@@ -685,7 +686,13 @@ const router = createBrowserRouter([
               },
             ],
           },
-
+          {
+            path: "tests/:testId/questions/:questionId",
+            element: <Suspense fallback={<Loading />}>
+            <ModifyQuestion />
+          </Suspense>,
+          loader: modifyQuestionLoader
+          },
           {
             path: "tests",
             element: (
@@ -696,6 +703,7 @@ const router = createBrowserRouter([
             loader: adminTestLoader,
             action: createAdminTest,
             children: [
+            
               {
                 path: "settings/:testId",
                 element: (

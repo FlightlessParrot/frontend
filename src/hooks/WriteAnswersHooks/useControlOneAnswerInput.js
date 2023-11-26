@@ -25,9 +25,9 @@ export default function useControlOneAnswerInput(number) {
         {
             const savedState={}
             let i=1;
-            action.edit.foreach((e)=>
+            action.edit.forEach((e)=>
             {
-                state['answer-'+i]={
+                savedState['answer-'+i]={
                     answer: e.answer,
                     correct: e.correct
                 }

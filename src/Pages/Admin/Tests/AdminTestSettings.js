@@ -5,6 +5,7 @@ import useChangeSubscriptionAndShowToast from "../../../hooks/useChangeSubscript
 import CreateQuestion from "../../../Components/CreateQuestion/CreateQuestion";
 import AddOrDeleteQuestion from "../../../Components/ModifyQuestions/AddOrDeleteQuestion";
 import SubscriptionsCheckboxes from "../../../Components/Subscriptions/SubscriptionsCheckboxes";
+import EditQuestion from "../../../Components/ModifyQuestions/EditQuestion";
 
 export default function AdminTestSettings() {
     const loaderData=useLoaderData()
@@ -25,6 +26,7 @@ export default function AdminTestSettings() {
         </Stack>
         <Stack spacing={40} marginY={40}>
         <CreateQuestion />
+        <EditQuestion testId={loaderData.test.id}  />
         <AddOrDeleteQuestion testId={loaderData.test.id} admin pageChildren/>
         </Stack>
     </Box>

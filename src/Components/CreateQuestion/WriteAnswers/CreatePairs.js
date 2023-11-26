@@ -5,7 +5,7 @@ import PairInput from "./PairInput"
 import useControlPairsInput from "../../../hooks/WriteAnswersHooks/useControlPairsInput"
 import { useLoaderData } from "react-router-dom"
 
-export default function CreatePairs({howMany, setAnswers}) {
+export default function CreatePairs({howMany, setAnswers, controler, setControler}) {
     const loaderData=useLoaderData();
     const answers=[]
     const [pairs, dispatchPairs]=useControlPairsInput(howMany)
@@ -27,11 +27,12 @@ export default function CreatePairs({howMany, setAnswers}) {
     }
     useEffect(
         ()=>{
-            if(loaderData?.question)
+            if(loaderData?.question && controler.pairs)
             {
+                setControler(s=>({...s, pairs: false}))
                 dispatchPairs({edit: loaderData.question.squares})
             }
-        },[loaderData, dispatchPairs])
+        },[loaderData, dispatchPairs, controler, setControler])
   return (
     <Box>
         <i className="block my-12">Stwórz pary odpowiedzi.</i>

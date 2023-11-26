@@ -6,7 +6,8 @@ export default  function useCreateQuestion() {
     const sendFile=useAttachFileToQuestion()
     const toast=useShowToast();
     
-    const sendData=useCallback( async (testId, questionData, answerData, setIsSuccessfull, fileRef)=>{
+    const sendData=useCallback( async (testId, questionData, answerData, setIsSuccessfull, fileRef, method='post', questionId)=>{
+        const url = method==='post' ? `/test/${testId}/question/create` :`/question/${questionId}/update`
        const token = await getCSRFToken() 
         if(questionData.type!==answerData.type)
         {
@@ -15,7 +16,7 @@ export default  function useCreateQuestion() {
         'title': 'Nie udało się utworzyć pytania'})
             return setIsSuccessfull(false)
         }
-        const questionResponse=await fetch(process.env.REACT_APP_BACKEND+`/test/${testId}/question/create`,{
+        const questionResponse=await fetch(process.env.REACT_APP_BACKEND+url,{
             method: 'post',
             credentials: 'include',
             headers: { "X-XSRF-TOKEN": token, 'Accept': "application/json", "Content-Type": "application/json" },

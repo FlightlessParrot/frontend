@@ -1,9 +1,22 @@
 import { Button, useBoolean, Box, Stack } from "@chakra-ui/react"
 import GiveExplanation from "./GiveExplanation"
+import { useLoaderData } from "react-router-dom"
+import { useEffect } from "react"
 
 export default function LastPage({value, onChange, setSendData}) {
     const [flag, setFlag]=useBoolean(false)
-    
+    const loaderData=useLoaderData()
+
+    useEffect(
+      ()=>{
+        if(loaderData.question.explanation!==null)
+        {
+          setFlag.on()
+        }else{
+          setFlag.off()
+        }
+      },[loaderData,setFlag]
+    )
   return (
     <Box >
         <strong className="bold-serif text-2xl block my-8">Pytanie jest gotowe do utworzenia</strong>

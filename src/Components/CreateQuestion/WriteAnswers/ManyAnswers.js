@@ -4,7 +4,7 @@ import useControlManyAnswersInput from "../../../hooks/WriteAnswersHooks/useCont
 import ManyAnswersInput from "./ManyAnswersInput"
 import { useLoaderData } from "react-router-dom"
 
-export default function ManyAnswers({howMany, setAnswers}) {
+export default function ManyAnswers({howMany, setAnswers, controler, setControler}) {
     const loaderData=useLoaderData()
     const answers=[]
     const [givenAnswers, dispatchGivenAnswers]=useControlManyAnswersInput(howMany)
@@ -14,7 +14,6 @@ export default function ManyAnswers({howMany, setAnswers}) {
         },[howMany, dispatchGivenAnswers])
     useEffect(
         ()=>{
-            
             setAnswers({
                 type: 'many-answers',
                 answers: givenAnswers})
@@ -26,11 +25,12 @@ export default function ManyAnswers({howMany, setAnswers}) {
     }
     useEffect(
         ()=>{
-            if(loaderData?.question)
+            if(loaderData?.question && !controler.writeAnswer && controler.manyAnswers)
             {
+                setControler(s=>({...s, manyAnswers: false}))
                 dispatchGivenAnswers({edit: loaderData.question.answers})
             }
-        },[loaderData, dispatchGivenAnswers])
+        },[loaderData, dispatchGivenAnswers, controler, setControler])
   return (
     <Box>
         <i className="block my-12">Napisz odpowiedzi i zaznacz poprawne odpowiedzi.</i>

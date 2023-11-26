@@ -4,7 +4,7 @@ import useControlOneAnswerInput from "../../../hooks/WriteAnswersHooks/useContro
 import { useEffect } from "react"
 import { useLoaderData } from "react-router-dom"
 
-export default function OneAnswer({howMany, setAnswers}) {
+export default function OneAnswer({howMany, setAnswers, controler, setControler}) {
 
     const loaderData=useLoaderData()
     const [givenAnswers, dispatchGivenAnswers]=useControlOneAnswerInput(howMany)
@@ -30,11 +30,12 @@ export default function OneAnswer({howMany, setAnswers}) {
     }
     useEffect(
         ()=>{
-            if(loaderData?.question)
+            if(loaderData?.question && controler.oneAnswer)
             {
+                setControler(s=>({...s, oneAnswer: false}))
                 dispatchGivenAnswers({edit: loaderData.question.answers})
             }
-        },[loaderData, dispatchGivenAnswers]
+        },[loaderData, dispatchGivenAnswers, controler, setControler]
     )
   return (
     <Box>

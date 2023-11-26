@@ -10,7 +10,7 @@ import { useEffect, useReducer } from "react";
 import { useLoaderData } from "react-router-dom";
 
 
-export default function WriteAnswers({type, setAnswers,}) {
+export default function WriteAnswers({type, setAnswers, controler, setControler}) {
   const loaderData=useLoaderData()
   const reducer=(state, action)=>{
     let newState=state
@@ -36,8 +36,9 @@ export default function WriteAnswers({type, setAnswers,}) {
   const [howMany, howManyDispatch]=useReducer(reducer,{max: 5, current:4})
     useEffect(
    ()=> {
-    if(loaderData?.question)
+    if(loaderData?.question && controler.writeAnswers)
     {
+      setControler(s=>({...s,writeAnswers:false}))
       if(loaderData.question.type!=='open' && loaderData.question.type!=='pairs')
       {
         if(loaderData.question.type==='order')
@@ -49,19 +50,19 @@ export default function WriteAnswers({type, setAnswers,}) {
         }
         
       }
-      if(loaderData.question.type!=='pairs')
+      if(loaderData.question.type==='pairs')
       {
         howManyDispatch({number: loaderData.question.squares.length/2})
       }
     }
-    },[loaderData, howManyDispatch]
+    },[loaderData, howManyDispatch, controler, setControler]
   )
   return<> 
     <Center><AddRemoveButton minusFn={()=>howManyDispatch('back')} plusFn={()=>howManyDispatch('next')}/></Center>
-    {type==="one-answer" && <OneAnswer howMany={howMany.current} setAnswers={setAnswers} />  }
-    {type==="many-answers" && <ManyAnswers howMany={howMany.current} setAnswers={setAnswers} />  }
-    {type==="pairs" && <CreatePairs howMany={howMany.current} setAnswers={setAnswers}/>}
-    {type==='order' && <CreateOrder howMany={howMany.current} setAnswers={setAnswers} />}
+    {type==="one-answer" && <OneAnswer howMany={howMany.current} setAnswers={setAnswers} controler={controler} setControler={setControler} />  }
+    {type==="many-answers" && <ManyAnswers howMany={howMany.current} setAnswers={setAnswers} controler={controler} setControler={setControler} />  }
+    {type==="pairs" && <CreatePairs howMany={howMany.current} setAnswers={setAnswers} controler={controler} setControler={setControler}/>}
+    {type==='order' && <CreateOrder howMany={howMany.current} setAnswers={setAnswers} controler={controler} setControler={setControler}/>}
     {type==='short-answer' && <CreateShortAnswer setAnswers={setAnswers} />}
   </>
 }
