@@ -1,4 +1,4 @@
-import { Form, useLoaderData, useParams } from "react-router-dom";
+import { Form, useLoaderData} from "react-router-dom";
 import ProductCard from "../../Components/Cards/ProductCard";
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input} from "@chakra-ui/react";
 import { TestUserLayout } from "../../Components/Layouts/UserLayout";
@@ -11,7 +11,7 @@ export default function BuyProduct() {
   const [price, setPrice] = useState('');
   const [code, setCode]=useState('')
   const [error, setError]=useState(false)
-  
+  console.log(loaderData)
     const howMuch =
       loaderData.subscription?.discount_price !== null
         ? loaderData.subscription.discount_price : loaderData.subscription.price
@@ -48,12 +48,14 @@ export default function BuyProduct() {
           <div className="">
             <ProductCard {...loaderData.subscription} />
           </div>{" "}
+          <div className="col-span-2 ">
+            <img src={process.env.REACT_APP_BACKEND + loaderData.subscription.path}  className="w-full mb-8"/>
           <section
-            className="col-span-2 "
+            
             dangerouslySetInnerHTML={{
               __html: loaderData.subscription.description,
             }}
-          />
+          /></div>
         </div>
         <div method='post' onSubmit={e=>e.preventDefault()} className="flex my-12">
             <FormControl isInvalid={error}>
@@ -69,7 +71,7 @@ export default function BuyProduct() {
           </p>
           <div className="flex p-4 justify-center">
             {" "}
-            <Button type='submit' colorScheme="green" paddingX={20} margin={6}>Kupuję</Button>
+            <Button type='submit' colorScheme="green" paddingX={20} margin={6}>Zobacz więcej</Button>
           </div>
         </div>
       </Box>

@@ -5,7 +5,6 @@ export default function LabeledProgressBar({label, width}) {
     <div>
         <b className="bold-sans-serif">{label}</b>
         <ProgressBar width={width} />
-
     </div>
   )
 }
