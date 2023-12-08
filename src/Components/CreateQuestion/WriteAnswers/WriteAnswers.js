@@ -33,7 +33,7 @@ export default function WriteAnswers({type, setAnswers, controler, setControler}
     }
     return {...newState};
   }
-  const [howMany, howManyDispatch]=useReducer(reducer,{max: 5, current:4})
+  const [howMany, howManyDispatch]=useReducer(reducer,{max: 6, current:4})
     useEffect(
    ()=> {
     if(loaderData?.question && controler.writeAnswers)
