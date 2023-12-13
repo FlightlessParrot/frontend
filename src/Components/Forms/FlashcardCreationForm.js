@@ -14,7 +14,7 @@ import  Quill  from "react-quill";
 
 export default function FlashcardCreationForm({edit}) {
 
-    const [categoryState,categoryDispatch]=useCategoriesReducer(true)
+    const [categoryState,categoryDispatch]=useCategoriesReducer()
 
     const submit=useSubmit()
     const [question, setQuestion]=useState({
@@ -26,17 +26,19 @@ export default function FlashcardCreationForm({edit}) {
     const [check, setCheck]=useState(false)
  
     const ref=useRef(null)
+    const formRef=useRef(null)
     const loaderData=useLoaderData()
 
    
     const [checkedSubscrptions, setCheckedSubscriptions]=useState([])
-    console.log(checkedSubscrptions)
+    
     const [value, setValue]=useState('')
     useEffect(
         ()=>{
             if(loaderData?.flashcard)
             {
                 const flashcard=loaderData.flashcard
+                console.log(flashcard)
                 setQuestion({value: flashcard.question, blur: true})
                 setValue(flashcard.answer)
                 setCheckedSubscriptions(flashcard.subscriptions)
@@ -44,8 +46,8 @@ export default function FlashcardCreationForm({edit}) {
                     {
                        
                         newState:{
-                            categories: [flashcard?.category_id ? flashcard.category_id.toString():null],
-                            undercategories: [flashcard?.undercategory_id ? flashcard?.undercategory_id.toString() : null]
+                            categories: flashcard.categories,
+                            undercategories: flashcard.undercategories
                         }
                     }
                 )
@@ -59,21 +61,20 @@ export default function FlashcardCreationForm({edit}) {
         e.preventDefault()
         if(value!=='<p><br></p>' && value!=='')
         {
-        const formData=new FormData()
+        const formData=new FormData(formRef.current)
         if(edit)
         {
             formData.append('_method','put');   
         }
-        formData.append('question',question.value);
+        // formData.append('question',question.value);
         formData.append('answer',value);
         checkedSubscrptions.forEach(
             e=>formData.append('subscriptions[]',e.id)
         )
         
-        
-        categoryState.categories.length && formData.append('category_id',categoryState.categories[0])
-        categoryState.undercategories.length && formData.append('undercategory_id',categoryState.undercategories[0])
-        ref.current.files.length && formData.append('image',ref.current.files[0])
+        // categoryState.categories.length && formData.append('categories[]',categoryState.categories)
+        // categoryState.undercategories.length && formData.append('undercategories[]',categoryState.undercategories)
+        //ref.current.files.length && formData.append('image',ref.current.files[0])
         submit(formData,{method: 'post',encType: 'multipart/form-data'	})
         setQuestion({    blur: false,
             value: ''});
@@ -97,7 +98,7 @@ export default function FlashcardCreationForm({edit}) {
         }
     }  
   return (
-    <Form onSubmit={submitHandler}>
+    <Form ref={formRef} onSubmit={submitHandler}>
     <Stack spacing={16}>
        
         <FormControl>

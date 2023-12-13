@@ -12,6 +12,7 @@ export default function ChooseType({ categoryState, categoryDispatch, typeValue,
     ['short-answer','Krótka odpowiedź pisemna']
 ]
 const options=types.map((e,i)=><option key={i} value={e[0]}>{e[1]}</option>)
+
   return (
     <Box >
         <FormControl>

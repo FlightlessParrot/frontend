@@ -3,21 +3,22 @@ import useGetAllCategoriesAndUndercategories from "../../hooks/useGetAllCategori
 import CategoriesAndUndercategoriesCheckboxes from "../Forms/CategoriesAndUndercategoriesCheckboxes";
 import SearchBar from "../SearchBars/SearchBar";
 import { Flex } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import Pager from "../Pager/Pager";
+import useControlCategoriesAndUndercategories from "../../hooks/useControlCategoriesAndUndercategories";
 export default function ModifyQuestion({title,underTitle, onChange, value, children, searchButtonHandler, formRef, pageChildren })
 {
     const getAllCategoriesAndUndercategories=useGetAllCategoriesAndUndercategories();
-    const [categoryObject, setCategoryObject]=useState({categories:[], undercategories: []})
-
+    const [checkedCategories, dispatchCheckedCategories]=useControlCategoriesAndUndercategories()
     useEffect(
         ()=>{
             const fn=async ()=>{
                 const response=await getAllCategoriesAndUndercategories()
-                setCategoryObject(response)
+              
+                dispatchCheckedCategories({type: 'new', data: response})
             }
             fn()
-        },[getAllCategoriesAndUndercategories,setCategoryObject]
+        },[getAllCategoriesAndUndercategories,dispatchCheckedCategories]
     )
     return(
         <div>
@@ -25,7 +26,7 @@ export default function ModifyQuestion({title,underTitle, onChange, value, child
             <i className="m-4 mt-2 mb-8 block ">{underTitle}</i>
             <Form ref={formRef} onSubmit={e=>e.preventDefault()}>
             <SearchBar maxWidth="600px" name='search' labelText={'Wyszukaj pytanie'} onChange={onChange} value={value} onClick={searchButtonHandler}/>
-            <CategoriesAndUndercategoriesCheckboxes categories={categoryObject.categories} undercategories={categoryObject.undercategories}/>
+            <CategoriesAndUndercategoriesCheckboxes categoryState={checkedCategories} categoryDispatch={dispatchCheckedCategories} categories={checkedCategories['categories']} undercategories={checkedCategories['undercategories']}/>
             </Form>
             {pageChildren ?
             <Pager blocks={children} howManyPerPage={20} wrap />:

@@ -5,6 +5,8 @@ import { Box, Stack} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CategoriesCheckboxes from "../../Components/Forms/CategoriesCheckboxes";
 import useShowToast from "../../hooks/useShowToast";
+import useControlCategoriesAndUndercategories from "../../hooks/useControlCategoriesAndUndercategories";
+import useFilterUndercategoriesByCategories from "../../hooks/useFilterUndercategoriesByCategories";
 
 export default function FlashcardsSetting() {
     const actionData=useActionData()
@@ -15,7 +17,8 @@ export default function FlashcardsSetting() {
     const undercategories=loaderData.undercategories
     const toast=useShowToast()
     const navigate=useNavigate()
-  
+    const [checkedCategories, dispatchCheckedCategories]=useControlCategoriesAndUndercategories();
+    const filteredUndercategories=useFilterUndercategoriesByCategories(checkedCategories['categories'],undercategories)
     useEffect(
       ()=>{ 
         if(actionData?.flashcards && actionData.flashcards.length)
@@ -41,10 +44,10 @@ export default function FlashcardsSetting() {
         <Form  method='post'  >
             <Stack padding={[2,4,4,8,16]} spacing={'60px'}>
             <ChooseTestQuestionsNumber label='Wybierz ilość fiszek'/>
-            <CategoriesCheckboxes categoriesArray={categories} name='categories[]'>
+            <CategoriesCheckboxes categoriesArray={categories} onChange={dispatchCheckedCategories} isChecked={checkedCategories} name='categories[]'>
         Wybierz kategorie
       </CategoriesCheckboxes>
-      <CategoriesCheckboxes categoriesArray={undercategories} name='undercategories[]'>
+      <CategoriesCheckboxes categoriesArray={filteredUndercategories} onChange={dispatchCheckedCategories} isChecked={checkedCategories} name='undercategories[]'>
         Wybierz podkategorie
       </CategoriesCheckboxes></Stack>
       <button className="action-button float-right m-8 md:m-16">Start</button>

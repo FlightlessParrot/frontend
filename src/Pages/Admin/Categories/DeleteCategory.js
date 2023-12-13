@@ -37,7 +37,7 @@ export default function DeleteCategory() {
     <Title title='Usuń kategorie lub podkategorie' />
     <Form  method='post'>
         <Box padding={[2,4,4,8,16]}>
-        <CategoriesAndUndercategoriesCheckboxes  categories={loaderData.categories} undercategories={loaderData.undercategories} categoryDispatch={dispatch} categoryState={state}/>
+        <CategoriesAndUndercategoriesCheckboxes notFilter  categories={loaderData.categories} undercategories={loaderData.undercategories} categoryDispatch={dispatch} categoryState={state}/>
         <FormControl isInvalid={!state.categories.length && !state.undercategories.length}>
         <FormErrorMessage >Nie wybrałeś kategorii ani podkategorii</FormErrorMessage>
         </FormControl>

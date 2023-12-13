@@ -6,6 +6,8 @@ import useShowToast from "../../../hooks/useShowToast";
 import Title from "../../../Components/Title";
 
 export default function NewCategory() {
+  const loaderData=useLoaderData();
+  const categories=loaderData.categories
   const [type, setType]=useState('category')
   const data=useLoaderData()
   console.log(data)
@@ -53,6 +55,13 @@ export default function NewCategory() {
             <option value='undercategory'>podkategoria</option>
           </Select>
         </FormControl>
+        {type==='undercategory' && <FormControl >
+          <FormLabel>Wybierz kategorię, do której należy podkategoria</FormLabel>
+          <Select required  value={type} onChange={e=>setType(e.target.value)} name='category'>
+           { categories.map(e=><option value={e.id} key={e.id}>{e.name}</option>)}
+           
+          </Select>
+        </FormControl>}
         <FormControl isInvalid={state.name.blur===true && (state.name.value==='' || exist)   }>
           <FormLabel>Wprowadź nazwę {type==='category' ? 'kategorii': 'podkategorii'}</FormLabel>
           <Input required name='name' value={state.name.value} onChange={dispatch}  />

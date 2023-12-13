@@ -4,10 +4,35 @@ import QuestionSettings from "./Forms/QuestionSettings";
 import SetTime from "./Forms/SetTime";
 import ChoosePercent from "./Forms/ChoosePercent";
 import CategoriesCheckboxes from "./Forms/CategoriesCheckboxes";
+import useFilterUndercategoriesByCategories from "../hooks/useFilterUndercategoriesByCategories";
+import { useReducer } from "react";
 
 
 export default function CreateTestSetting({egzam, setEgzam, categories, undercategories, readOnlyEgzam}) {
-   
+
+    const categoriesReducer=(state, action)=>{
+      const name=action.target.name.slice(0,-2)
+      const ifExists=state[name].find(e=>e===action.target.value)
+    
+      if(ifExists)
+      {
+        const newState=state
+        newState[name]=state[name].filter(e=>e!==action.target.value)
+        return {...newState}
+      }else{
+        const newState=state
+        newState[name].push(action.target.value)
+        return {...newState}
+      }
+
+    }
+    const [checkedCategories, dispatchCheckedCategories]=useReducer(categoriesReducer,{
+      categories: [], undercategories: []
+    })
+
+    const filteredUndercategories=useFilterUndercategoriesByCategories(checkedCategories['categories'], undercategories)
+
+    
     return (
     <div className="p-10">
     <h3 className="inline-block bold-serif m-16">Ustawienia szczególne</h3>
@@ -20,10 +45,10 @@ export default function CreateTestSetting({egzam, setEgzam, categories, undercat
     >
       <Stack gap={6}>
       <ChooseTestQuestionsNumber />
-      <CategoriesCheckboxes categoriesArray={categories} name='categories[]'>
+      <CategoriesCheckboxes categoriesArray={categories} name='categories[]' isChecked={checkedCategories} onChange={dispatchCheckedCategories}>
         Wybierz kategorie
       </CategoriesCheckboxes>
-      <CategoriesCheckboxes categoriesArray={undercategories} name='undercategories[]'>
+      <CategoriesCheckboxes categoriesArray={filteredUndercategories} name='undercategories[]' isChecked={checkedCategories} onChange={dispatchCheckedCategories}>
         Wybierz podkategorie
       </CategoriesCheckboxes>
     
