@@ -12,6 +12,7 @@
 # production
 /build
 /backend
+/backup
 # misc
 .DS_Store
 .env.local
