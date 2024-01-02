@@ -17,6 +17,9 @@ export default function ChooseTestQuestionsNumber({label='Ilość pytań', name=
               <FormLabel>{label}</FormLabel>
               <Select name={name} placeholder="10" maxW={"150px"}>
                 {makeQuestionNumbers()}
+                <option data-testid='CreateTestInstance_optionNumber' value={1000} key={'all'}>
+              Wszystkie
+            </option>
               </Select>
             </FormControl>
   )

@@ -43,7 +43,7 @@ export default function Flashcards() {
         <Center py={[5,10,20,30, 75]} className="perspective">
             {jsx[state.currentElement]}
         </Center>
-        <button onClick={dispatch('prev')} className="action-button p-4 float-left"></button>
+        <button onClick={()=>dispatch('prev')} className="action-button p-4 float-left">Wróć</button>
         <button onClick={dispatch} className="action-button p-4 float-right">Dalej</button>  
     </Box>
   )
