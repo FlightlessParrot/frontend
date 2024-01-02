@@ -72,8 +72,8 @@ export default function FlashcardCreationForm({edit}) {
             e=>formData.append('subscriptions[]',e.id)
         )
         
-        // categoryState.categories.length && formData.append('categories[]',categoryState.categories)
-        // categoryState.undercategories.length && formData.append('undercategories[]',categoryState.undercategories)
+        categoryState.categories.length && formData.append('categories[]',categoryState.categories)
+        categoryState.undercategories.length && formData.append('undercategories[]',categoryState.undercategories)
         //ref.current.files.length && formData.append('image',ref.current.files[0])
         submit(formData,{method: 'post',encType: 'multipart/form-data'	})
         setQuestion({    blur: false,
