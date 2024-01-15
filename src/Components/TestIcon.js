@@ -3,7 +3,7 @@ import IconImage from "./Image/IconImage";
 export default function TestIcon({name, id, onClick=null, path}) {
 
   return (
-    <IconImage path={process.env.REACT_APP_BACKEND+'/../'+path} alt='' >
+    <IconImage path={process.env.REACT_APP_BACKEND+path} alt='' >
         {onClick!==null &&<CloseButton onClick={onClick}  className="float-right" />}
            <Flex justify={'center'} alignItems={'end'} h='full' p='8px'>
             <p className="text-center ">
