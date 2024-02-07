@@ -9,7 +9,7 @@ export default function SolveTest() {
     const data=useLoaderData();
     
     const navigation=useNavigate()
-   console.log(data)
+
     useEffect(
       ()=>{data===false && navigation('/user/tests')},[data, navigation]
     )
@@ -40,9 +40,9 @@ export default function SolveTest() {
       ()=>{
         if(submit)
         {
+          setSubmit(false)
           const submit=async()=>{
           const response=await submitTest()
-          setSubmit(false)
           response ? setShowSummary(true): setError(true);
           }
           submit()
@@ -72,7 +72,7 @@ export default function SolveTest() {
         return {...state, currentQuestion: state.currentQuestion+1}
         }
        }else{
-       const newState=state
+       const newState={...state}
         const id=state.qas[state.currentQuestion].question.id
        newState.answers[id]=action
        return{...newState}

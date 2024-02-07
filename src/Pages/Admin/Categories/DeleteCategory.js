@@ -13,6 +13,7 @@ export default function DeleteCategory() {
     const loaderData=useLoaderData()
     const actionData=useActionData()
     const toast=useShowToast()
+    console.log(loaderData)
     useEffect(
         ()=>{
           if(actionData && !actionData?.error)

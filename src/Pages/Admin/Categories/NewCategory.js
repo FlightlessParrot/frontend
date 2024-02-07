@@ -9,8 +9,9 @@ export default function NewCategory() {
   const loaderData=useLoaderData();
   const categories=loaderData.categories
   const [type, setType]=useState('category')
+  const [chooseCategory, setChooseCategory]=useState(loaderData.categories[0])
   const data=useLoaderData()
-  console.log(data)
+
   const initValue={
     name:{
       blur: false, 
@@ -57,7 +58,7 @@ export default function NewCategory() {
         </FormControl>
         {type==='undercategory' && <FormControl >
           <FormLabel>Wybierz kategorię, do której należy podkategoria</FormLabel>
-          <Select required  value={type} onChange={e=>setType(e.target.value)} name='category'>
+          <Select required  value={chooseCategory} onChange={e=>setChooseCategory(e.target.value)} name='category'>
            { categories.map(e=><option value={e.id} key={e.id}>{e.name}</option>)}
            
           </Select>
