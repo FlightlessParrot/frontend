@@ -9,8 +9,7 @@ export default function Welcome()
 {
 
     return(
-        <QuestLayout>
-       
+        <QuestLayout>      
         <Infographics infographicsData={infographicsData}/>
         <Article text={welcomeArticle} givenClasses='lg:w-4/5' />
         <RoboMan />

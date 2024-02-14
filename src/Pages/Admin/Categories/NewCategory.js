@@ -1,10 +1,10 @@
-import { Flex, FormControl, FormErrorMessage, FormLabel, Select, Box, Input, Stack } from "@chakra-ui/react";
-import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { Flex, FormControl, FormErrorMessage, FormLabel, Select, Box, Input, Stack, Badge } from "@chakra-ui/react";
+import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
 import useFormController from "../../../hooks/useFormController";
 import { useEffect, useState } from "react";
 import useShowToast from "../../../hooks/useShowToast";
 import Title from "../../../Components/Title";
-
+import DataLayout from "../../../Components/Data/DataLayout"
 export default function NewCategory() {
   const loaderData=useLoaderData();
   const categories=loaderData.categories
@@ -71,6 +71,17 @@ export default function NewCategory() {
         <Flex justify={'end'}><button className="action-button">Stwórz</button></Flex>
         </Stack>
       </Form>
+      <DataLayout title='Edytuj kategorię'>
+        <Flex gap={4} wrap={'wrap'}>
+        {
+        loaderData.categories.map((e)=><Link to={'/user/admin/categories/category/'+e.id} key={e.id}><Badge colorScheme='teal'>{e.name}</Badge></Link>)
+        }</Flex>
+      </DataLayout>
+      <DataLayout title='Edytuj podkategorię'>
+      <Flex gap={4} wrap={'wrap'}>
+      {loaderData.undercategories.map((e)=><Link to={'/user/admin/categories/subcategory/'+e.id} key={e.id}><Badge colorScheme='teal'>{e.name}</Badge></Link>)}
+      </Flex>
+      </DataLayout>
     </Box>
   )
 }

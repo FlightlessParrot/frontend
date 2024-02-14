@@ -80,6 +80,14 @@ import Loading from "./Pages/Loading";
 import editFlashcardLoader from "./fetch/loader/editFlashcardLoader";
 import updateFlashcard from "./fetch/action/updateFlashcard";
 import makePayment from "./fetch/action/makePaymentAction";
+import EditCategory from "./Pages/Admin/Categories/EditCategory";
+import EditUndercategory from "./Pages/Admin/Categories/EditUndercategory";
+import getCategoryById from "./fetch/loader/getCategoryById";
+import getUndercategoryById from "./fetch/loader/getUndercategoryById";
+import editCategoryAction from "./fetch/action/editCategoryAction";
+import editUndercategoryAction from "./fetch/action/editUndercategoryAction";
+
+
 const BuyProduct = lazy(() => import("./Pages/User/BuyProduct"));
 const EditFlashcard = lazy(() =>
   import("./Pages/Admin/Flashcards/Edit/EditFlashcard")
@@ -179,7 +187,7 @@ const AdminUsers = lazy(() => import("./Pages/Admin/Users/AdminUsers"));
 const ChooseFlashcards = lazy(() =>
   import("./Pages/Admin/Flashcards/ChooseFlashcards")
 );
-const ModifyQuestion=lazy(()=>import("./Pages/Admin/Tests/ModifyQuestion"));
+const ModifyQuestion = lazy(() => import("./Pages/Admin/Tests/ModifyQuestion"));
 
 const router = createBrowserRouter([
   {
@@ -282,11 +290,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'shop/:subscription',
-        element:    <Suspense fallback={<Loading />}>
+        element: <Suspense fallback={<Loading />}>
           <BuyProduct />
-          </Suspense>,
-          loader:getSubscription,
-          action: makePayment
+        </Suspense>,
+        loader: getSubscription,
+        action: makePayment
       },
       {
         path: "help",
@@ -659,7 +667,6 @@ const router = createBrowserRouter([
         path: "admin",
         element: (
           <Suspense fallback={<Loading />}>
-            {" "}
             <Admin />
           </Suspense>
         ),
@@ -689,9 +696,9 @@ const router = createBrowserRouter([
           {
             path: "tests/:testId/questions/:questionId",
             element: <Suspense fallback={<Loading />}>
-            <ModifyQuestion />
-          </Suspense>,
-          loader: modifyQuestionLoader
+              <ModifyQuestion />
+            </Suspense>,
+            loader: modifyQuestionLoader
           },
           {
             path: "tests",
@@ -703,7 +710,7 @@ const router = createBrowserRouter([
             loader: adminTestLoader,
             action: createAdminTest,
             children: [
-            
+
               {
                 path: "settings/:testId",
                 element: (
@@ -724,6 +731,22 @@ const router = createBrowserRouter([
             ),
             loader: getCategoriesAndUndercategories,
             children: [
+              {
+                path: 'category/:categoryId',
+                element: <Suspense fallback={<Loading />}>
+                  <EditCategory />
+                </Suspense>,
+                loader: getCategoryById,
+                action: editCategoryAction
+              },
+              {
+                path: 'subcategory/:undercategoryId',
+                element: <Suspense fallback={<Loading />}>
+                  <EditUndercategory />
+                </Suspense>,
+                loader: getUndercategoryById,
+                action: editUndercategoryAction
+              },
               {
                 path: "new",
                 element: (
