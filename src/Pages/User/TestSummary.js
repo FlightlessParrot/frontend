@@ -30,7 +30,7 @@ export default function TestSummary() {
     <div className="p-4 w-screen h-screen flex justify-center items-center review-father">
       <CSSTransition nodeRef={ref} appear={true} in={inProp} timeout={490} classNames={'review'} > 
       <div ref={ref} className="w-fit max-w-md shadow-xl shadow-black rounded-md p-4 "><h1 className="article-title-font text-center">{loaderData.pass ? 'Huurra!!!' :'Ohhhh' }</h1>
-        <i>{loaderData.pass ? 'Masz przynajmniej ' : 'Masz mniej niż '}  {loaderData.generatedTest.gandalf} poprawnych odpowiedzi</i>
+        <i>{loaderData.pass ? 'Masz przynajmniej ' : 'Masz mniej niż '}  {loaderData.generatedTest.gandalf}% poprawnych odpowiedzi</i>
 
         <Flex marginY={'40px'} direction={'column'} alignItems={'lstart'} justifyContent={'start'} gap={12}>
             <h2 className="lead">{Math.round(loaderData.correctAnswers.length/loaderData.allAnswers.length * 100)} % poprawnych odpowiedzi</h2>
