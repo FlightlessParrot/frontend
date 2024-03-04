@@ -13,7 +13,7 @@ export default function WriteQuestion({value, onChange, fileRef}) {
             <Input name='question' value={value} onChange={onChange} maxLength={250} placeholder="Czy ameba to rodzaj pantofelka?" />
             <FormErrorMessage>Uzupełnij mnie!</FormErrorMessage>
         </FormControl>
-        <ImageForm fileRef={fileRef} check={check} setCheck={setCheck} />
+        <ImageForm fileRef={fileRef} check={check} setCheck={setCheck} id_suffix={'create_question_'} />
         <PresentImage fileRef={fileRef} />
         {loaderData?.question && loaderData.question.path!==null &&
         <div>

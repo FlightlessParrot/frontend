@@ -31,7 +31,7 @@ export default function Pager({blocks, howManyPerPage, wrap=false}) {
 
    const lowBarNumbers=useReturnNumberWithFriends({numbersArray: pagesArray, currentNumber: state.currentPage, howManyFriends:6 })
 
-   console.log(state)
+
   return (
     <Flex align={'center'} direction={'column'} pb={[2,4,8,16]} >
         <Flex align={wrap ? 'stretch':'center' } direction={wrap ? 'row': 'column' } wrap={wrap? 'wrap': 'nowrap'}  p={[2,4,8,16]} gap={10}>

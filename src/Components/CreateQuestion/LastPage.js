@@ -9,7 +9,7 @@ export default function LastPage({value, onChange, setSendData}) {
 
     useEffect(
       ()=>{
-        if(loaderData.question.explanation!==null)
+        if(loaderData.question?.explanation && loaderData.question.explanation!==null)
         {
           setFlag.on()
         }else{

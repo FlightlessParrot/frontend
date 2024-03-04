@@ -36,20 +36,18 @@ export default function CreateQuestion() {
   const fileRef = useRef(null);
 
   console.log(loaderData)
- 
   useEffect(
     ()=>{
-      if(loaderData.question)
+      if(loaderData?.question)
       {
         setType(loaderData.question.type)
         setQuestion(loaderData.question.question)
-        setExplanation(loaderData.question.explanation)
+        loaderData.question?.explanation && setExplanation( loaderData.question.explanation);
         categoryDispatch({newState:{
           categories:  loaderData.question.categories.length ? loaderData.question.categories : [],
           undercategories: loaderData.question.undercategories.length ? loaderData.question.undercategories : []
       }
       })
-
       }
     },[loaderData, setType, setQuestion, setExplanation, categoryDispatch]
   )
@@ -66,7 +64,7 @@ export default function CreateQuestion() {
       };
      
       
-      sendData(testId, questionData, answers, setIsSuccesfull, fileRef, method, loaderData.question.id);
+      sendData(testId, questionData, answers, setIsSuccesfull, fileRef, method, loaderData?.question ? loaderData.question.id : null );
       setSend.off();
       loaderData?.question && navigate('/user/admin/tests');
     }
@@ -108,6 +106,7 @@ export default function CreateQuestion() {
     <Box key={key}>
       <h2 className="lead">Dodaj pytanie do pakietu</h2>
       <MyStepper activeStep={activeStep} steps={steps} />
+      <form onSubmit={e=>e.preventDefault()}>
       <Box padding={[4, 8]}>
         {activeStep === 0 && (
           <ChooseType
@@ -143,6 +142,7 @@ export default function CreateQuestion() {
           Następny krok
         </Button>
       </Flex>
+      </form>
     </Box>
   );
 }

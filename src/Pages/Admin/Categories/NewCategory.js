@@ -58,7 +58,7 @@ export default function NewCategory() {
         </FormControl>
         {type==='undercategory' && <FormControl >
           <FormLabel>Wybierz kategorię, do której należy podkategoria</FormLabel>
-          <Select required  value={chooseCategory} onChange={e=>setChooseCategory(e.target.value)} name='category'>
+          <Select required  value={chooseCategory} onChange={e=>setChooseCategory(e.target.value)} name='categories[]'>
            { categories.map(e=><option value={e.id} key={e.id}>{e.name}</option>)}
            
           </Select>
